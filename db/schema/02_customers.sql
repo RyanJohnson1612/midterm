@@ -1,0 +1,5 @@
+DROP TABLE IF EXISTS customers CASCADE;
+CREATE TABLE customers (
+  name VARCHAR(255) NOT NULL,
+  phone_number VARCHAR(32) NOT NULL
+);
