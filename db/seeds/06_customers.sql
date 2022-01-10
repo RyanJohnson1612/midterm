@@ -1,3 +1,5 @@
+-- customers table seeds here
+
 INSERT INTO customers (name, phone)
 VALUES ('Pascal', '6471111111'),
 ('Nurse', '6472222222'),
