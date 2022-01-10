@@ -12,6 +12,7 @@ module.exports = (db) => {
   router.get("/customers", (req, res) => {
     db.query(`SELECT * FROM customers;`)
       .then(data => {
+        console.log('customers')
         const customers = data.rows;
         res.json({ customers });
       })

@@ -43,14 +43,14 @@ const customersRoutes = require("./routes/customers");
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/api/widgets", widgetsRoutes(db));
-app.use("/api/customers", widgetsRoutes(db))
+app.use("/api/customers", customersRoutes(db))
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/restaurants", (req, res) => {
+app.get("/customers", (req, res) => {
   res.render("index");
 });
 
