@@ -1,7 +1,7 @@
 /*
- * All routes for Restaurants are defined here
- * Since this file is loaded in server.js into api/restaurants,
- *   these routes are mounted onto /restaurants
+ * All routes for Customers are defined here
+ * Since this file is loaded in server.js into api/cusomters,
+ *   these routes are mounted onto /customers
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
@@ -9,11 +9,11 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
-  router.get("/restaurants", (req, res) => {
-    db.query(`SELECT * FROM restaurants;`)
+  router.get("/customers", (req, res) => {
+    db.query(`SELECT * FROM customers;`)
       .then(data => {
-        const restaurants = data.rows;
-        res.json({ restaurants });
+        const customers = data.rows;
+        res.json({ customers });
       })
       .catch(err => {
         res
