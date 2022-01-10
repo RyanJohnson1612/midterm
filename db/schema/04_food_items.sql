@@ -9,5 +9,5 @@ CREATE TABLE food_items (
   picture_url VARCHAR(255) NOT NULL,
   description TEXT NOT NULL,
   spice_level VARCHAR(32) DEFAULT NULL,
-  size VARCHAR(32) DEFAULT M
+  size VARCHAR(32) DEFAULT 'M'
 );
