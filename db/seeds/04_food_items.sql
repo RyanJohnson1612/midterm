@@ -1,6 +1,6 @@
 -- food_items table seeds here
 
-INSERT INTO food_items (food_name, price, picture_url, description, spice_level, size)
+INSERT INTO food_items (food_name, price, picture_url, description)
 VALUES
 ('hot dog', 6.99, 'https://cdn.pixabay.com/photo/2021/02/15/11/43/hot-dog-6017568_1280.jpg', 'platform hot practitioner agile dog milestone big data brand stack bandwidth standard setter architecture driver'),
 ('corn dog', 6.99, 'https://cdn.pixabay.com/photo/2019/08/24/16/15/corn-dog-4427893_1280.jpg', 'best practice visibility enterprise brand milestone stakeholder proposition synergy capability capability big data market focus prince2 practitioner low hanging fruit vertical enterprise deliverable'),
