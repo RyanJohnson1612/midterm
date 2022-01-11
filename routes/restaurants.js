@@ -46,7 +46,7 @@ module.exports = (db) => {
     res.redirect('/');
   });
 
-  // Restaurant logou route
+  // Restaurant logout route
   router.post("/logout", (req, res) => {
     req.session = null;
     res.redirect('/');
