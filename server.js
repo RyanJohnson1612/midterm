@@ -51,7 +51,7 @@ app.use("/api/customers", customersRoutes(db))
 // Separate them into separate routes files (see above).
 
 app.get("/customers", (req, res) => {
-  res.render("index");
+  res.render("customer-index");
 });
 
 app.listen(PORT, () => {
