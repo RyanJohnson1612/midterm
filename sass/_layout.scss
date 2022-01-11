@@ -1,0 +1,9 @@
+body,
+html {
+  margin: 0;
+
+  // This is a bad style, its here for demo purposes only
+  @include for-md-down {
+    background-color: red !important;
+  }
+}
