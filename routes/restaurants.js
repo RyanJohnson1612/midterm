@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 
 module.exports = (db) => {
+  // Restaurant index route
   router.get("/", (req, res) => {
     db.query(`SELECT * FROM restaurants;`)
       .then(data => {
@@ -23,19 +24,32 @@ module.exports = (db) => {
   });
 
   router.get("/:id", (req, res) => {
-    db.query(`
-      SELECT * FROM restaurants
-      WHERE restaurants.id = $1 ;
-      `, )
+    db.query(`SELECT * FROM restaurants WHERE restaurants.id = $1;`, [req.params.id])
       .then(data => {
-        const user = data.rows[0];
-        return user;
+        const restaurant = data.rows;
+        res.json({ restaurant });
       })
       .catch(err => {
         res
           .status(404)
           .json({ error: err.message });
       });
+  });
+
+  // Restuarant login route
+  router.post("/login/:id", (req, res) => {
+    if(req.params.id) {
+      req.session.restaurant_id = req.params.id;
+      res.redirect('/');
+    }
+    res.status(404);
+    res.redirect('/');
+  });
+
+  // Restaurant logou route
+  router.post("/logout", (req, res) => {
+    req.session = null;
+    res.redirect('/');
   });
   return router;
 };
