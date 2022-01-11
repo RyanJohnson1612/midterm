@@ -1,0 +1,21 @@
+// This is the file where all the styles get compiled from.
+// If your styles aren't showing up make sure that your partial is being imported here.
+// For more info on how to use sass: https://sass-lang.com/documentation
+
+// Import helper styles first
+@import 'variables';
+@import 'mediaqueries';
+
+// Import partials
+@import 'layout';
+
+// Main styles
+// If you are putting something here, ask yourself: Could it be its own partial, or fit in an existing partial?
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
