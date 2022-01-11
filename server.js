@@ -51,7 +51,17 @@ app.use("/api/customers", customersRoutes(db))
 // Separate them into separate routes files (see above).
 
 app.get("/customers", (req, res) => {
-  res.render("customer-index");
+  db.query(
+    `SELECT *
+     FROM food_items`)
+  .then((result) => {
+    console.log(result.rows)
+    return result.rows;
+  }).then((result) => {
+  res.render('customers-index.ejs', {'foodArr': result})
+  }).catch((err) => {
+    console.log('User Null', err.message);
+  });
 });
 
 app.listen(PORT, () => {
