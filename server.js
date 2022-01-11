@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.DB_PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -42,16 +42,47 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const restaurantsRoutes = require("./routes/restaurants");
+const customersRoutes = require("./routes/customers");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/restaurants", restaurantsRoutes(db));
-
+app.use("/api/customers", customersRoutes(db))
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
+
+app.get("/customers", (req, res) => {
+  db.query(
+    `SELECT *
+     FROM food_items`)
+  .then((result) => {
+    console.log(result.rows)
+    return result.rows;
+  }).then((result) => {
+  res.render('customers-index.ejs', {'foodArr': result})
+  }).catch((err) => {
+    console.log('User Null', err.message);
+  });
+});
+
+app.get("/customers/:id", (req, res) => {
+  const index = req.params.id - 1;
+  console.log('index', index);
+  db.query(
+    `SELECT *
+     FROM food_items`)
+  .then((result) => {
+    return result.rows;
+  }).then((result) => {
+    console.log('foodArr', result[index])
+    res.render('customers-detail.ejs', {'foodArr': result[index]})
+  }).catch((err) => {
+    console.log('User Null', err.message);
+  });
+});
 
 app.get("/", (req, res) => {
   console.log(req.session.restaurant_id);
