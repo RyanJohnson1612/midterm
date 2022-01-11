@@ -20,7 +20,7 @@ module.exports = (db) => {
     `)
     .then(data => {
       orders = data.rows
-      res.json({ orders });
+      res.render('orders_index', { orders });
     })
     .catch(err => {
       res
@@ -31,13 +31,14 @@ module.exports = (db) => {
 
   router.get("/:id", (req, res) => {
     db.query(`
-    SELECT orders.*, customers.name, customers.phone_number, json_agg(json_build_object('food_name', food_items.food_name, 'quantity', quantity)) AS food_items
+    SELECT orders.*, customers.name, customers.phone_number, restaurants.name, json_agg(json_build_object('food_name', food_items.food_name, 'quantity', quantity)) AS food_items
     FROM orders
+    JOIN restaurants ON restaurants.id = restaurant_id
     JOIN customers ON customers.id = customer_id
     JOIN order_food_items ON order_id = orders.id
     JOIN food_items ON food_items.id = food_item_id
     WHERE orders.id = $1
-    GROUP BY orders.id, customers.name, customers.phone_number;
+    GROUP BY orders.id, customers.name, customers.phone_number, restaurants.name;
     `, [req.params.id])
       .then(data => {
         const order = data.rows[0];
