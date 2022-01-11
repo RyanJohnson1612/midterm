@@ -21,5 +21,21 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/:id", (req, res) => {
+    db.query(`
+      SELECT * FROM restaurants
+      WHERE restaurants.id = $1 ;
+      `, )
+      .then(data => {
+        const user = data.rows[0];
+        return user;
+      })
+      .catch(err => {
+        res
+          .status(404)
+          .json({ error: err.message });
+      });
+  });
   return router;
 };

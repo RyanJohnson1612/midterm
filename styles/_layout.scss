@@ -1,0 +1,10 @@
+// See: https://sass-lang.com/
+
+body,
+html {
+  margin: 0;
+
+  @include media-breakpoint-down(sm) {
+    color: red !important;
+  }
+}
