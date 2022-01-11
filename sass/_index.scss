@@ -23,16 +23,30 @@
     }
   }
 
+  button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    color: $white;
+
+    &:hover {
+      color: $secondary;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
   @include for-md-down {
     background-color: $secondary;
     color: $primary;
 
-    a {
+    a:hover {
       color: $primary;
+    }
 
-      &:hover {
-        color: $white;
-      }
+    button:hover {
+      color: $primary;
     }
   }
 }
+
