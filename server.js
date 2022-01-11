@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
+const cookieSession = require("cookie-session");
 const morgan = require("morgan");
 
 // PG database client/connection setup
@@ -31,17 +32,21 @@ app.use(
   })
 );
 
+app.use(cookieSession({
+  name: 'session',
+  keys: [process.env.COOKIE_SESSION_KEY_1, process.env.COOKIE_SESSION_KEY_2]
+}));
+
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
-const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
+const restaurantsRoutes = require("./routes/restaurants");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
+app.use("/api/restaurants", restaurantsRoutes(db));
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -49,7 +54,14 @@ app.use("/api/widgets", widgetsRoutes(db));
 // Separate them into separate routes files (see above).
 
 app.get("/", (req, res) => {
-  res.render("index");
+  console.log(req.session.restaurant_id);
+  if(req.session.restaurant_id) {
+    console.log('logged in');
+    res.render("index", {'restaurantId': req.session.restaurant_id});
+  } else {
+    console.log('logged out');
+    res.render("index", {'restaurantId': null});
+  }
 });
 
 app.listen(PORT, () => {
