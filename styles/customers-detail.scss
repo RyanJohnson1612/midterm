@@ -2,7 +2,7 @@ body {
   html {
     margin: 0;
   }
-
+  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,32 +20,31 @@ body {
   );
 }
 
-body {
-  flex-direction: column;
-}
-
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-
-.picture {
+.picture-detail {
   position: relative;
   display: block;
   max-width: 100%;
   max-height: 100%;
-  width: 400px;
-  height: 270px;
+  width: 750px;
+  height: 520px;
   left: 0;
   right: 0;
-  padding-bottom: 5px;
+  padding: 50px;
 }
 
-.thumbnail {
-  padding: 20px;
+.right-contain {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: 360px;
+  height: 380px;
+  left: 0;
+  right: 0;
+  padding: 50px;
 }
 
+div {
+  gap: 100px;
+
+}

@@ -1,6 +1,7 @@
 body {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
 
   background: rgb(163, 208, 219);
@@ -13,9 +14,4 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
-}
-
-.food {
-  display: flex;
-  flex-wrap: wrap;
 }

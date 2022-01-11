@@ -64,6 +64,22 @@ app.get("/customers", (req, res) => {
   });
 });
 
+app.get("/customers/:id", (req, res) => {
+  const index = req.params.id - 1;
+  console.log('index', index);
+  db.query(
+    `SELECT *
+     FROM food_items`)
+  .then((result) => {
+    return result.rows;
+  }).then((result) => {
+    console.log('foodArr', result[index])
+    res.render('customers-detail.ejs', {'foodArr': result[index]})
+  }).catch((err) => {
+    console.log('User Null', err.message);
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });

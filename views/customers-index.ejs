@@ -8,23 +8,23 @@
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/customers_index.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/customers-index.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
 <body>
-
+  <h1>Our Menu</h1>
+  <section class = 'container'>
   <% for (let food of foodArr) {%>
-  <section class = 'food'>
+  <a href = '/customers/<%= food.id %>' class = 'thumbnail'>
     <img class = 'picture' src="<%= food.picture_url %>">
-    <h6><%= food.food_name %></h6>
-    <h6><%= food.price %></h6>
+    <p><%= food.food_name.toUpperCase() %></p>
+    <p><%= '$' + food.price %></p>
+    <% } %>
+  </a>
   </section>
-
-  <% } %>
-
 </body>
 
 </html>
