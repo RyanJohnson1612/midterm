@@ -20,7 +20,7 @@ module.exports = (db) => {
     `)
     .then(data => {
       orders = data.rows
-      res.render('orders_index', { orders });
+      res.render('restaurants/orders_index', { orders });
     })
     .catch(err => {
       res
