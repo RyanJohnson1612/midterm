@@ -1,0 +1,81 @@
+// SCSS mixins for mediaqueries that match the breakpoints that Bootstrap uses
+//
+// Example usage:
+// .some-class {
+//   display:inline
+
+//   @include for-md-up {
+//     display: block;
+//   }
+// }
+
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
+
+// Small devices (landscape phones, 576px and up)
+@mixin for-sm-up {
+  @media (min-width: 576px) { @content }
+}
+
+// Medium devices (tablets, 768px and up)
+@mixin for-md-up {
+  @media (min-width: 768px) { @content }
+}
+
+// Large devices (desktops, 992px and up)
+@mixin for-lg-up {
+  @media (min-width: 992px) { @content }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@mixin for-xl-up {
+  @media (min-width: 1200px) { @content }
+}
+
+// Extra small devices (portrait phones, less than 576px)
+@mixin for-xs-down {
+  @media (max-width: 575.98px) { @content }
+}
+
+// Small devices (landscape phones, less than 768px)
+@mixin for-sm-down {
+  @media (max-width: 767.98px) { @content }
+}
+
+// Medium devices (tablets, less than 992px)
+@mixin for-md-down {
+  @media (max-width: 991.98px) { @content }
+}
+
+// Large devices (desktops, less than 1200px)
+@mixin for-lg-down {
+  @media (max-width: 1199.98px) { @content }
+}
+
+// Extra large devices (large desktops)
+// No media query since the extra-large breakpoint has no upper bound on its width
+
+// Extra small devices (portrait phones, less than 576px only)
+@mixin for-xs-only {
+  @media (max-width: 575.98px) { @content }
+}
+
+// Small devices (landscape phones, 576px to 767.98px only)
+@mixin for-sm-only {
+  @media (min-width: 576px) and (max-width: 767.98px) { @content }
+}
+
+// Medium devices (tablets, 768px to 991.98px only)
+@mixin for-md-only {
+  @media (min-width: 768px) and (max-width: 991.98px) { @content }
+}
+
+// Large devices (desktops, 992px to 1199.98px only)
+@mixin for-lg-only {
+  @media (min-width: 992px) and (max-width: 1199.98px) { @content }
+}
+
+// Extra large devices (large desktops, over 1200px only)
+@mixin for-lg-only {
+  @media (min-width: 1200px) { @content }
+}

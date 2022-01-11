@@ -1,0 +1,14 @@
+/* This is where all the styles get compiled, if your styles
+   aren't showing up make sure that they are being imported here
+*/
+
+/* import helper styles first */
+@import 'variables';
+@import 'mediaqueries';
+
+@import 'layout';
+@import 'main';
+
+.test-class {
+  color: red;
+}
