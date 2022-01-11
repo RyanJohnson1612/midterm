@@ -3,9 +3,5 @@ html {
   margin: 0;
 
   // These are bad styles, for demo purposes only
-  background-color: $primary;
 
-  @include for-md-down {
-    background-color: $secondary;
-  }
 }

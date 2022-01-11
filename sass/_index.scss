@@ -1,0 +1,38 @@
+// Styles for the index page
+#site-map {
+  width: 100vw;
+  height: 100vh;
+  padding: 2em;
+  background-color: $primary;
+  color: $white;
+
+  h1 {
+    margin-top: 0;
+    font-weight: bold;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  a {
+    color: $white;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+
+  @include for-md-down {
+    background-color: $secondary;
+    color: $primary;
+
+    a {
+      color: $primary;
+
+      &:hover {
+        color: $white;
+      }
+    }
+  }
+}
