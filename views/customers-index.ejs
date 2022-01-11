@@ -20,8 +20,8 @@
   <% for (let food of foodArr) {%>
   <a href = '/customers/<%= food.id %>' class = 'thumbnail'>
     <img class = 'picture' src="<%= food.picture_url %>">
-    <p><%= food.food_name.toUpperCase() %></p>
-    <p><%= '$' + food.price %></p>
+    <h4><%= food.food_name.toUpperCase() %></h4>
+    <h4><%= food.price %></h4>
     <% } %>
   </a>
   </section>

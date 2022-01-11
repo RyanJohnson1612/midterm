@@ -31,6 +31,8 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+
+
 }
 
 .picture {
@@ -38,7 +40,7 @@ body {
   display: block;
   max-width: 100%;
   max-height: 100%;
-  width: 400px;
+  width: 380px;
   height: 270px;
   left: 0;
   right: 0;
@@ -47,5 +49,14 @@ body {
 
 .thumbnail {
   padding: 20px;
+  margin: 20px;
+  border-color: black;
+  border-style: solid;
+  box-shadow: 5px 10px #888888;
+  color: black;
+}
+
+.thumbnail:hover {
+  transition: width 2s, height 4s;
 }
 

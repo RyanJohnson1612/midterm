@@ -21,7 +21,7 @@
     <img class = 'picture-detail' src="<%= foodArr.picture_url %>">
     <section class = 'right-contain'>
       <h2><%= foodArr.food_name.toUpperCase() %></h2>
-      <p><%= '$' + foodArr.price %></p>
+      <p><%= foodArr.price %></p>
       <p><%= foodArr.description %></p>
       <form  action="/customers/new" method="POST">
           <div>
