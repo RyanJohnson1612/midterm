@@ -2,10 +2,11 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.DB_PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
+const cookieSession = require("cookie-session");
 const morgan = require("morgan");
 
 // PG database client/connection setup
@@ -31,18 +32,21 @@ app.use(
   })
 );
 
+app.use(cookieSession({
+  name: 'session',
+  keys: [process.env.COOKIE_SESSION_KEY_1, process.env.COOKIE_SESSION_KEY_2]
+}));
+
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const restaurantsRoutes = require("./routes/restaurants");
-const widgetsRoutes = require("./routes/widgets");
 const customersRoutes = require("./routes/customers");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/restaurants", restaurantsRoutes(db));
-app.use("/api/widgets", widgetsRoutes(db));
 app.use("/api/customers", customersRoutes(db))
 // Note: mount other resources here, using the same pattern above
 
@@ -78,6 +82,17 @@ app.get("/customers/:id", (req, res) => {
   }).catch((err) => {
     console.log('User Null', err.message);
   });
+});
+
+app.get("/", (req, res) => {
+  console.log(req.session.restaurant_id);
+  if(req.session.restaurant_id) {
+    console.log('logged in');
+    res.render("index", {'restaurantId': req.session.restaurant_id});
+  } else {
+    console.log('logged out');
+    res.render("index", {'restaurantId': null});
+  }
 });
 
 app.listen(PORT, () => {
