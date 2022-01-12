@@ -2,21 +2,45 @@
 // If your styles aren't showing up make sure that your partial is being imported here.
 // For more info on how to use sass: https://sass-lang.com/documentation
 
-// Import helper styles first
-@import 'variables';
-@import 'mediaqueries';
+// Import helper styles
+@import 'helpers/variables';
+@import 'helpers/mediaqueries';
+@import 'helpers/bootstrap-overrides';
 
-// Import partials
+// Import base partials
 @import 'layout';
 @import 'navbar';
 @import 'index';
-@import 'customer-index';
-@import 'customer-detail';
+
+/****************************************
+  INDIVIDUAL PAGE PARTIAL
+****************************************/
+// Customer partials
+@import 'pages/customer-index';
+@import 'pages/customer-detail';
+
+// Restaurant partials
+@import 'pages/orders-index';
 
 // Main styles
 // If you are putting something here, ask yourself: Could it be its own partial, or fit in an existing partial?
+// These are the last styles to be computed so they have the potential to override other styles, proceed with caution!
 
 body {
   min-height: 100vh;
-  overflow-x: hidden;
+
+  background: rgb(163, 208, 219);
+  background: linear-gradient(
+    227deg,
+    rgba(163, 208, 219, 1) 0%,
+    rgba(163, 176, 219, 1) 20%,
+    rgba(163, 173, 219, 1) 34%,
+    rgba(163, 219, 208, 1) 59%,
+    rgba(163, 208, 219, 1) 74%,
+    rgba(163, 208, 219, 1) 100%
+  );
+}
+
+a {
+  text-decoration: none !important;
 }
