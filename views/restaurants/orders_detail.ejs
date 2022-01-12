@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('../partials/_head', { title: 'Orders Index'}) %>
+
+  <body>
+    <%- include('../partials/_nav') %>
+    <main>
+      <section id="order-details">
+        <div class="col-md-8">
+          <h1><%= order.customer_name %>'s Order</h1>
+          <ul class="order-info">
+            <li><span>Order Number:</span> <%= order.id %></li>
+            <li><span>Phone Number:</span> <%= order.customer_phone_number %></li>
+            <% if(order.preferred_pickup) { %>
+              <li><span>Preferred Pickup Time:</span> <%= order.preferred_pickup %></li>
+            <% } %>
+            <li><span>Order Placed At:</span> <%= order.order_date %></li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="order-food">
+        <div class="col-md-8">
+          <h2>Food ordered</h2>
+          <% for (let food of order.food_items) { %>
+            <article class="order-food-card">
+              <div>
+                <img src="<%= food.picture_url %>" width="150">
+                <div>
+                  <h4><%= food.food_name %></h4>
+                  <p>Quantity: <%= food.quantity %></p>
+                </div>
+              </div>
+              <h4><%= food.price %></h4>
+              </ul>
+            </article>
+          <% } %>
+          <h3 class="order-total"><span>Total:</span> <%= order.total %></h3>
+        </div>
+      </section>
+
+      <section id="order-confirm-form">
+        <form action="/orders/confirm" method="post" class="form col-md-8">
+          <div>
+            <label>Estimated Pickup Time:</label>
+            <input type="text" value="<%= ( order.preferred_pickup ? order.preferred_pickup : '' ) %>" class="form-control">
+            <button type="submit" class="btn">Confirm Order</button>
+          </div>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
+

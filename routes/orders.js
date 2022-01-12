@@ -40,7 +40,7 @@ module.exports = (db) => {
 
   router.get("/:id", (req, res) => {
     db.query(`
-    SELECT orders.*, customers.name AS customer_name, customers.phone_number AS customer_phone_number, restaurants.name AS restaurant_name, restaurants.phone_number AS restaurant_phone_number, json_agg(json_build_object('food_name', food_items.food_name, 'quantity', quantity)) AS food_items
+    SELECT orders.*, customers.name AS customer_name, customers.phone_number AS customer_phone_number, restaurants.name AS restaurant_name, restaurants.phone_number AS restaurant_phone_number, json_agg(json_build_object('food_name', food_items.food_name, 'quantity', quantity, 'picture_url', picture_url, 'price', price)) AS food_items, sum(food_items.price) AS total
     FROM orders
     JOIN restaurants ON restaurants.id = restaurant_id
     JOIN customers ON customers.id = customer_id
@@ -51,7 +51,8 @@ module.exports = (db) => {
     `, [req.params.id])
       .then(data => {
         const order = data.rows[0];
-        res.json({ order });
+        // res.json({order});
+        res.render('restaurants/orders_detail.ejs', { order });
       })
       .catch(err => {
         res

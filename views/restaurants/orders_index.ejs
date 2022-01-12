@@ -17,21 +17,21 @@
         <th>Completed</th>
         <th></th>
       </tr>
-    <% for (let order in orders) { %>
+    <% for (let order of orders) { %>
       <tbody>
         <tr>
-          <td><%= new Date(orders[order].order_date).toString().replace('(Coordinated Universal Time)', '') %></td>
-          <td><%= orders[order].name %></td>
-          <td><%= orders[order].phone_number %></td>
+          <td><%= new Date(order.order_date).toString().replace('(Coordinated Universal Time)', '') %></td>
+          <td><%= order.name %></td>
+          <td><%= order.phone_number %></td>
           <td>
-            <% for (let item in orders[order].food_items) {%>
-              <%= orders[order].food_items[item].quantity %> X <%= orders[order].food_items[item].food_name %> <br>
+            <% for (let item of order.food_items) {%>
+              <%= item.quantity %> X <%= item.food_name %> <br>
             <% } %>
           </td>
-          <td><%= orders[order].confirmed %></td>
-          <td><%= orders[order].completed %></td>
+          <td><%= order.confirmed %></td>
+          <td><%= order.completed %></td>
           <td>
-            <a href="/orders/<%= orders[order].id %>" class="btn btn-primary">View Details</a>
+            <a href="/orders/<%= order.id %>" class="btn btn-primary">View Details</a>
           </td>
         </tr>
       </tbody>
