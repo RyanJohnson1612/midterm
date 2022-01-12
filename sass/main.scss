@@ -2,11 +2,13 @@
 // If your styles aren't showing up make sure that your partial is being imported here.
 // For more info on how to use sass: https://sass-lang.com/documentation
 
+// Import variables first to override bootstrap's theme colours
+@import 'helpers/variables';
+
 // Import bootstrap's scss files
 @import "../node_modules/bootstrap-scss/bootstrap.scss";
 
 // Import helper styles
-@import 'helpers/variables';
 @import 'helpers/mediaqueries';
 @import 'helpers/bootstrap-overrides';
 
