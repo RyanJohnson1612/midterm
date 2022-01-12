@@ -1,0 +1,13 @@
+.navbar {
+  width: 100vw;
+  background-color: $primary;
+
+  .links a {
+    color: $white;
+    font-weight: bold;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
