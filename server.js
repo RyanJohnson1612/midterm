@@ -85,15 +85,37 @@ app.get("/customers/:id", (req, res) => {
 // customer add quanity to specific food_items
 // req.session is an object with following structure: { food_items_id: 'quantity', food_items_id: 'quantity', food_items_id: 'quantity' }
 app.post("/customers/:id/new", (req, res) => {
-  const quantity = req.body.quantity;
+  const quantity = Number(req.body.quantity);
   const foodID = req.params.id;
   console.log('quantity', quantity);
   console.log('foodID', foodID);
-  req.session[foodID] = {
-    'food_items_id' : foodID,
-    'quantity' : quantity};
-  console.log('cookie {food_item_id, quantity}', req.session);
-  res.redirect('/customers');
+  if(req.session.cart) {
+    let cart = req.session.cart;
+    for (let item of cart) {
+      if (item.food_items_id === foodID) {
+        item.quantity += quantity;
+        console.log('quantity updated', req.session.cart);
+        res.redirect('/customers');
+        return;
+      }
+    }
+
+    req.session.cart.push({
+      'food_items_id' : foodID,
+      'quantity' : quantity
+    });
+    console.log('add item to cart', req.session.cart);
+    res.redirect('/customers');
+
+  } else {
+    req.session.cart = [];
+    req.session.cart.push({
+      'food_items_id' : foodID,
+      'quantity' : quantity
+    });
+    console.log('initializ cart', req.session.cart);
+    res.redirect('/customers');
+  }
 });
 
 app.get("/", (req, res) => {
