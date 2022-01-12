@@ -1,43 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>Home Page</title>
+  <%- include('partials/_head', { title: foodArr.food_name.toUpperCase()}) %>
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/customers-detail.css" type="text/css" />
+<body class = 'customers-detail-body'>
+  <%- include('partials/_nav') %>
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
-</head>
+    <section class = 'customers-detail-bottom-two-content'>
+      <img class = 'customers-detail-picture' src="<%= foodArr.picture_url %>">
+      <section class = 'right-contain'>
+        <h2><%= foodArr.food_name.toUpperCase() %></h2>
+        <p><%= foodArr.price %></p>
+        <p><%= foodArr.description %></p>
+        <form  action="/customers/<%= foodArr.id %>/new" method="POST">
+            <div>
+              <label for="quantity">Quanity:</label>
+              <input type="number" min = '0' name="quantity" placeholder="0" style="width: 39px; margin: 1em">
+            </div>
 
-<body>
-
-
-
-    <img class = 'picture-detail' src="<%= foodArr.picture_url %>">
-    <section class = 'right-contain'>
-      <h2><%= foodArr.food_name.toUpperCase() %></h2>
-      <p><%= foodArr.price %></p>
-      <p><%= foodArr.description %></p>
-      <form  action="/customers/new" method="POST">
-          <div>
-            <label for="quantity">Quanity:</label>
-            <input type="number" min = '0' name="quantity" placeholder="0" style="width: 39px; margin: 1em">
-          </div>
-
-          <button type="submit" >Add to Cart</button>
-      </form>
-
+            <button type="submit" >Add to Cart</button>
+        </form>
+      </section>
     </section>
-
-
-
-
-
 </body>
 
 </html>

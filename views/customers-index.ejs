@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <title>Home Page</title>
+  <%- include('partials/_head', { title: 'Welcome to Burgers&Friends'}) %>
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/customers-index.css" type="text/css" />
-
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
-</head>
-
-<body>
+<body class = 'customers-detail-body'>
+  <%- include('partials/_nav') %>
   <h1>Our Menu</h1>
-  <section class = 'container'>
+  <section class = 'customers-detail-container'>
   <% for (let food of foodArr) {%>
-  <a href = '/customers/<%= food.id %>' class = 'thumbnail'>
-    <img class = 'picture' src="<%= food.picture_url %>">
+  <a href = '/customers/<%= food.id %>' class = 'customers-detail-thumbnail'>
+    <img class = 'customers-detail-picture' src="<%= food.picture_url %>">
     <h4><%= food.food_name.toUpperCase() %></h4>
     <h4><%= food.price %></h4>
     <% } %>
