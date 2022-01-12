@@ -51,8 +51,8 @@ module.exports = (db) => {
     `, [req.params.id])
       .then(data => {
         const order = data.rows[0];
-        res.json({order});
-        // res.render('restaurants/orders_detail.ejs', { order });
+        // res.json({order});
+        res.render('restaurants/orders_detail.ejs', { order });
       })
       .catch(err => {
         res
