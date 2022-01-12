@@ -18,6 +18,15 @@
   );
 }
 
+.customers-detail-bottom-two-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
+
 .customers-detail-picture {
   position: relative;
   display: block;
@@ -30,7 +39,7 @@
   padding: 15px;
 }
 
-.right-contain {
+.right-content {
   position: relative;
   display: block;
   max-width: 100%;
@@ -42,7 +51,4 @@
   padding: 15px;
 }
 
-.customers-detail-bottom-two-content {
-  display: flex;
-  flex-direction: row;
-}
+

@@ -1,4 +1,4 @@
-.customers-detail-body {
+.customers-index-body {
 
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@
 }
 
 
-.customers-detail-container {
+.customers-index-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -27,7 +27,7 @@
   min-height: 100vh;
 }
 
-.customers-detail-picture {
+.customers-index-picture {
   position: relative;
   display: block;
   max-width: 100%;
@@ -39,7 +39,7 @@
   padding-bottom: 5px;
 }
 
-.customers-detail-thumbnail {
+.customers-index-thumbnail {
   padding: 20px;
   margin: 20px;
   border-color: black;
@@ -49,8 +49,8 @@
   color: black;
 }
 
-.customers-detail-thumbnail:hover {
-  .customers-detail-picture{
+.customers-index-thumbnail:hover {
+  .customers-index-picture{
     width: 395px;
     height: 285px;
   };
