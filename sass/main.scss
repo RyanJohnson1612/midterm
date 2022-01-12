@@ -2,13 +2,14 @@
 // If your styles aren't showing up make sure that your partial is being imported here.
 // For more info on how to use sass: https://sass-lang.com/documentation
 
-// Import variables first to override bootstrap's theme colours
-@import 'helpers/variables';
+// Import colour variables first to override bootstrap default colours
+@import 'helpers/colours';
 
 // Import bootstrap's scss files
 @import "../node_modules/bootstrap-scss/bootstrap.scss";
 
 // Import helper styles
+@import 'helpers/variables';
 @import 'helpers/mediaqueries';
 @import 'helpers/bootstrap-overrides';
 
@@ -34,7 +35,8 @@
 // These are the last styles to be computed so they have the potential to override other styles, proceed with caution!
 
 body {
-  min-height: 100vh;
+  min-height: $full-nav-offset;
+  padding-top: 66px;
 
   background: rgb(163, 208, 219);
   background: linear-gradient(
@@ -46,8 +48,4 @@ body {
     rgba(163, 208, 219, 1) 74%,
     rgba(163, 208, 219, 1) 100%
   );
-}
-
-a {
-  text-decoration: none !important;
 }

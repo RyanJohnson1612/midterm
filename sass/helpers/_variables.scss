@@ -1,21 +1,24 @@
-// Colour variables
+/***************************************
+  Font Variables
+***************************************/
+// Font Families
+$comfortaa: 'Comfortaa', sans-serif;
+$lato: 'Lato', sans-serif;
 
-// Custom color palette
-$primary: #4056A1;
-$secondary: #EBBB37;
-$lightgrey: #8E8A85;
-$white: #FFFFFF;
-$black: #000000;
-$darkgrey: #545149;
+// Font weight variables for Lato
+$light: 300;
+$regular: 400;
+$black: 900;
 
-// Bootstrap defaults
-$success: #3e8d63;
-$danger: #D61A1A;
-$dark: #343a40;
-$facebook: #3b5998;
-$twitter: #55acee;
-$linkedin: #007bb5;
-$gmail: #dd5347;
-$whatsapp: #12af0a;
+// Font weight variables for Comfortaa
+$semibold: 600;
 
-// Font variables
+// Font weight variables for both fonts
+$bold: 700;
+
+/***************************************
+  Helper Variables
+***************************************/
+
+// Full viewport height with an offset for the nav height
+$full-nav-offset: calc(100vh - 66px);

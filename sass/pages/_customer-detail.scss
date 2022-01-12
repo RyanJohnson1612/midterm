@@ -3,7 +3,7 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: $full-nav-offset;
 
   img {
     position: relative;
@@ -11,6 +11,13 @@
     width: 750px;
     height: 520px;
     padding-right: 50px;
+
+    @include for-md-down {
+      width: 100%;
+      height: auto;
+      padding-right: 0;
+      justify-self: top;
+    }
   }
 
   .food-info {
@@ -20,13 +27,15 @@
     max-height: 100%;
     width: 360px;
     height: 380px;
-    left: 0;
-    right: 0;
     padding: 50px;
+
+    @include for-md-down {
+      width: 100%;
+      padding: 20px;
+    }
   }
 
-  .add-to-car-form div{
-    display: flex;
-    justify-content: space-evenly;
+  @include for-md-down {
+    display: block;
   }
 }
