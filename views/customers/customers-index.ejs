@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include('../partials/_head', { title: 'Home page'}) %>
+  <%- include('../partials/_head', { title: 'Welcome to Burger&Friends'}) %>
 
-  <body>
+  <body class = 'customers-index-body'>
     <!-- Navbar -->
     <%- include('../partials/_nav') %>
 
     <!-- Menu index -->
     <h1>Our Menu</h1>
-    <section class = 'container'>
+    <section class = 'customers-index-container'>
     <% for (let food of foodArr) {%>
-    <a href = '/customers/<%= food.id %>' class = 'thumbnail'>
-      <img class = 'picture' src="<%= food.picture_url %>">
+    <a href = '/customers/<%= food.id %>' class = 'customers-index-thumbnail'>
+      <img class = 'customers-index-picture' src="<%= food.picture_url %>">
       <h4><%= food.food_name.toUpperCase() %></h4>
       <h4><%= food.price %></h4>
       <% } %>
