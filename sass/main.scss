@@ -8,11 +8,15 @@
 
 // Import partials
 @import 'layout';
+@import 'navbar';
 @import 'index';
+@import 'customer-index';
+@import 'customer-detail';
 
 // Main styles
 // If you are putting something here, ask yourself: Could it be its own partial, or fit in an existing partial?
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
 }

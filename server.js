@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.DB_PORT || 8080;
+const PORT = process.env.PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
@@ -62,7 +62,7 @@ app.get("/customers", (req, res) => {
     console.log(result.rows)
     return result.rows;
   }).then((result) => {
-  res.render('customers-index.ejs', {'foodArr': result})
+  res.render('customers/customers-index.ejs', {'foodArr': result})
   }).catch((err) => {
     console.log('User Null', err.message);
   });
@@ -78,7 +78,7 @@ app.get("/customers/:id", (req, res) => {
     return result.rows;
   }).then((result) => {
     console.log('foodArr', result[index])
-    res.render('customers-detail.ejs', {'foodArr': result[index]})
+    res.render('customers/customers-detail.ejs', {'foodArr': result[index]})
   }).catch((err) => {
     console.log('User Null', err.message);
   });
