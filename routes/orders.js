@@ -7,8 +7,16 @@
 
 const express = require('express');
 const router  = express.Router();
+const authMiddleware = require("../lib/auth-middleware");
+
+// Required restaurant to be logged in to access order routes
+router.use((req, res, next) => {
+  authMiddleware(req, res, next);
+});
 
 module.exports = (db) => {
+
+
   router.get("/", (req, res) => {
     db.query(`
     SELECT orders.id, order_date, customers.name, customers.phone_number, confirmed, completed, json_agg(json_build_object('food_name', food_items.food_name, 'quantity', quantity)) AS food_items

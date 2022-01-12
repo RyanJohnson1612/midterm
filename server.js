@@ -89,8 +89,14 @@ app.get("/customers/:id", (req, res) => {
 app.get("/", (req, res) => {
   console.log(req.session.restaurant_id);
   if(req.session.restaurant_id) {
-    console.log('logged in');
-    res.render("index", {'restaurantId': req.session.restaurant_id});
+    db.query(`
+      SELECT *
+      FROM restaurants
+      WHERE id = $1`, [req.session.restaurant_id])
+      .then((data) => {
+        const restaurant = data.rows[0];
+        res.render("index", { restaurantId: req.session.restaurant_id, restaurant: restaurant });
+      })
   } else {
     console.log('logged out');
     res.render("index", {'restaurantId': null});
