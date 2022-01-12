@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_head', { title: foodArr.food_name.toUpperCase()}) %>
+
+  <body>
+    <!-- Navbar -->
+    <%- include('../partials/_nav') %>
+
+    <!-- Menu item -->
+    <img class = 'picture-detail' src="<%= foodArr.picture_url %>">
+    <section class = 'right-contain'>
+      <h2><%= foodArr.food_name.toUpperCase() %></h2>
+      <p><%= foodArr.price %></p>
+      <p><%= foodArr.description %></p>
+      <form  action="/customers/new" method="POST">
+          <div>
+            <label for="quantity">Quanity:</label>
+            <input type="number" min = '0' name="quantity" placeholder="0" style="width: 39px; margin: 1em">
+          </div>
+
+          <button type="submit" >Add to Cart</button>
+      </form>
+    </section>
+  </body>
+</html>

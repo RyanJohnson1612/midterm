@@ -8,6 +8,7 @@
 
 // Import partials
 @import 'layout';
+@import 'navbar';
 @import 'index';
 @import 'customers-detail';
 @import 'customers-index';
@@ -17,4 +18,5 @@
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
 }
