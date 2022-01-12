@@ -2,6 +2,9 @@
 // If your styles aren't showing up make sure that your partial is being imported here.
 // For more info on how to use sass: https://sass-lang.com/documentation
 
+// Import bootstrap's scss files
+@import "../node_modules/bootstrap-scss/bootstrap.scss";
+
 // Import helper styles
 @import 'helpers/variables';
 @import 'helpers/mediaqueries';
@@ -10,11 +13,13 @@
 // Import base partials
 @import 'layout';
 @import 'navbar';
-@import 'index';
 
 /****************************************
   INDIVIDUAL PAGE PARTIAL
 ****************************************/
+// Homepage
+@import 'pages/index';
+
 // Customer partials
 @import 'pages/customer-index';
 @import 'pages/customer-detail';
