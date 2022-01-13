@@ -2,16 +2,32 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   background-color: $primary;
   z-index: 100;
 
-  .links a {
+  .logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+
+    h2 {
+      // magic number don't touch
+      margin: 7px 10px 0;
+      font-family: $comfortaa;
+      font-weight: $black;
+      color: $white;
+      text-decoration: none;
+    }
+  }
+
+  .right-nav a {
     color: $white;
     font-weight: bold;
 
     &:hover {
       color: $secondary;
+      text-decoration: none;
     }
   }
 }
