@@ -1,0 +1,20 @@
+#error-page {
+  padding: 3em;
+  font-family: $comfortaa;
+
+  h1 {
+    margin-bottom: 0.75em;
+    font-weight: $black;
+  }
+
+  h5 {
+    margin-left: 0.5em;
+  }
+
+  p {
+    margin-left: 0.5em;
+    margin-bottom: 0.75em;
+    font-weight: $semibold;
+    font-size: 2em;
+  }
+}

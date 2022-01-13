@@ -1,0 +1,13 @@
+// Bootstrap theme overrides
+// Update these values in _variables.scss
+$theme-colors: (
+  primary: $primary, // override some or all base color definitions
+  secondary: $secondary,
+  success: $success,
+  dark: $dark,
+  facebook: $facebook, // you can add as many 'custom' colors as you like
+  twitter: $twitter,
+  linkedin: $linkedin,
+  gmail: $gmail,
+  whatsapp: $whatsapp
+);

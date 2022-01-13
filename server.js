@@ -3,11 +3,13 @@ require("dotenv").config();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
-const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
-const cookieSession = require("cookie-session");
 const morgan = require("morgan");
+const sassMiddleware = require("./lib/sass-middleware");
+const cookieSession = require("cookie-session");
+const cartCount = require("./middleware/cart-count-middleware");
+const defaultVars = require("./middleware/default-vars-middleware");
 
 // PG database client/connection setup<h1>Your Cart</h1>
 const { Pool } = require("pg");
@@ -26,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   "/styles",
   sassMiddleware({
-    source: __dirname + "/styles",
+    source: __dirname + "/sass",
     destination: __dirname + "/public/styles",
     isSass: false, // false => scss, true => sass
   })
@@ -41,6 +43,17 @@ app.use(
 
 app.use(express.static("public"));
 
+// Get the number of items in the cart and add to req variable, null if no cart
+// Access this in any route with req.cartCount
+// Add it to the template variables inside res.render() to use in ejs template
+app.use((req, res, next) =>{ cartCount(req, res, next) });
+
+// Default variables that should be on every page
+// Include them in res.render template variables like this: ...req.defaultVars
+// Example:
+// res.render('view_name', { example: 'variable', ...req.defaultVars})
+app.use((req, res, next) => { defaultVars(req, res, next) });
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const restaurantsRoutes = require("./routes/restaurants");
@@ -53,8 +66,6 @@ app.use("/orders", ordersRoutes(db));
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/api/customers", customersRoutes(db));
 // Note: mount other resources here, using the same pattern above
-
-// Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
@@ -67,7 +78,8 @@ app.get("/customers", (req, res) => {
       return result.rows;
     })
     .then((result) => {
-      res.render("customers/customers-index.ejs", { foodArr: result });
+      console.log(req.defaultVars);
+      res.render("customers/customers-index.ejs", { foodArr: result, ...req.defaultVars });
     })
     .catch((err) => {
       console.log("User Null", err.message);
@@ -84,8 +96,9 @@ app.get("/customers/:id", (req, res) => {
       return result.rows;
     })
     .then((result) => {
+      const cartCount = req.cartCount;
       console.log("foodArr", result[index]);
-      res.render("customers/customers-detail.ejs", { foodArr: result[index] });
+      res.render("customers/customers-detail.ejs", { foodArr: result[index], ...req.defaultVars });
     })
     .catch((err) => {
       console.log("User Null", err.message);
@@ -122,30 +135,33 @@ app.post("/customers/:id/new", (req, res) => {
       food_items_id: foodID,
       quantity: quantity,
     });
-    console.log("initializ cart", req.session.cart);
+    console.log("initialize cart", req.session.cart);
     res.redirect("/customers");
   }
 });
 
+// Home page
 app.get("/", (req, res) => {
   console.log(req.session.restaurant_id);
   if (req.session.restaurant_id) {
     db.query(
-      `
-      SELECT *
+      `SELECT *
       FROM restaurants
       WHERE id = $1`,
       [req.session.restaurant_id]
     ).then((data) => {
       const restaurant = data.rows[0];
+      req.session.restaurant = restaurant;
+      // Don't add  ...defaultVars in this render function
       res.render("index", {
         restaurantId: req.session.restaurant_id,
         restaurant: restaurant,
+        cartCount: req.cartCount
       });
     });
   } else {
     console.log("logged out");
-    res.render("index", { restaurantId: null });
+    res.render("index", { ...req.defaultVars });
   }
 });
 
