@@ -1,25 +1,31 @@
 // Styles for the index page
 #site-map {
-  width: 100vw;
-  height: 100vh;
-  padding: 0.5em 2em;
-  background-color: $primary;
-  color: $white;
+  padding: 1em;
+  font-family: $comfortaa;
 
   h1 {
-    margin-top: 0;
-    font-weight: bold;
+    font-weight: $black;
   }
 
   h2 {
-    font-size: 1.5em;
+    margin-left: 0.5em;
+    font-family: $lato;
+  }
+
+  p {
+    margin-left: 0.5em;
+    margin-bottom: 0.75em;
+    font-weight: $semibold;
+    font-size: 2em;
   }
 
   a {
-    color: $white;
+    font-family: $lato;
+    color: black;
 
     &:hover {
-      color: $secondary;
+      color: $primary;
+      text-decoration: none;
     }
   }
 
@@ -27,25 +33,12 @@
     padding: 0;
     border: none;
     background-color: transparent;
-    color: $white;
+    color: black;
+    font-family: $lato;
 
     &:hover {
-      color: $secondary;
-      text-decoration: underline;
+      color: $primary;
       cursor: pointer;
-    }
-  }
-
-  @include for-md-down {
-    background-color: $secondary;
-    color: $primary;
-
-    a:hover {
-      color: $primary;
-    }
-
-    button:hover {
-      color: $primary;
     }
   }
 }
