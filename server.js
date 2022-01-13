@@ -2,14 +2,14 @@
 require("dotenv").config();
 
 // Web server config
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.DB_PORT || 8080;
 const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
 const cookieSession = require("cookie-session");
 const morgan = require("morgan");
 
-// PG database client/connection setup
+// PG database client/connection setup<h1>Your Cart</h1>
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
@@ -32,10 +32,12 @@ app.use(
   })
 );
 
-app.use(cookieSession({
-  name: 'session',
-  keys: [process.env.COOKIE_SESSION_KEY_1, process.env.COOKIE_SESSION_KEY_2]
-}));
+app.use(
+  cookieSession({
+    name: "session",
+    keys: [process.env.COOKIE_SESSION_KEY_1, process.env.COOKIE_SESSION_KEY_2],
+  })
+);
 
 app.use(express.static("public"));
 
@@ -55,12 +57,12 @@ app.use("/api/restaurants", restaurantsRoutes(db));
 
 app.get("/", (req, res) => {
   console.log(req.session.restaurant_id);
-  if(req.session.restaurant_id) {
-    console.log('logged in');
-    res.render("index", {'restaurantId': req.session.restaurant_id});
+  if (req.session.restaurant_id) {
+    console.log("logged in");
+    res.render("index", { restaurantId: req.session.restaurant_id });
   } else {
-    console.log('logged out');
-    res.render("index", {'restaurantId': null});
+    console.log("logged out");
+    res.render("index", { restaurantId: null });
   }
 });
 
