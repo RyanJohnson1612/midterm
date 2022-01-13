@@ -1,5 +1,6 @@
 // This is the file where all the styles get compiled from.
 // If your styles aren't showing up make sure that your partial is being imported here.
+// If that doesn't work make sure that you are running the script `npm run sass-watch` in a terminal
 // For more info on how to use sass: https://sass-lang.com/documentation
 
 // Import colour variables first to override bootstrap default colours
@@ -18,25 +19,30 @@
 @import 'navbar';
 
 /****************************************
-  INDIVIDUAL PAGE PARTIAL
+  Individual Page Partials
 ****************************************/
 // Homepage
 @import 'pages/index';
 
 // Customer partials
-@import 'pages/customer-index';
-@import 'pages/customer-detail';
+@import 'pages/customers-index';
+@import 'pages/customers-detail';
 
 // Restaurant partials
 @import 'pages/orders-index';
+@import 'pages/orders-detail';
 
 // Main styles
 // If you are putting something here, ask yourself: Could it be its own partial, or fit in an existing partial?
 // These are the last styles to be computed so they have the potential to override other styles, proceed with caution!
 
 body {
-  min-height: $full-nav-offset;
+  min-height: $full-h-nav-offset;
   padding-top: 66px;
+
+  font-family: $lato;
+  font-weight: $regular;
+
 
   background: rgb(163, 208, 219);
   background: linear-gradient(

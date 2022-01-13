@@ -1,24 +1,22 @@
 /***************************************
   Font Variables
 ***************************************/
-// Font Families
-$comfortaa: 'Comfortaa', sans-serif;
-$lato: 'Lato', sans-serif;
 
-// Font weight variables for Lato
+// Font Families
+$comfortaa: 'Comfortaa', Arial, sans-serif;
+$lato: 'Lato', Arial, sans-serif;
+
+// Font weight helpers
+$thin: 100;
 $light: 300;
 $regular: 400;
-$black: 900;
-
-// Font weight variables for Comfortaa
 $semibold: 600;
-
-// Font weight variables for both fonts
 $bold: 700;
+$black: 900;
 
 /***************************************
   Helper Variables
 ***************************************/
 
 // Full viewport height with an offset for the nav height
-$full-nav-offset: calc(100vh - 66px);
+$full-h-nav-offset: calc(100vh - 66px);
