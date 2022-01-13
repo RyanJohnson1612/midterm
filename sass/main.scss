@@ -6,12 +6,14 @@
 @import 'variables';
 @import 'mediaqueries';
 
-// Import partials
+// Import base partials
 @import 'layout';
 @import 'navbar';
+
+// Page partials
 @import 'index';
-@import 'customer-index';
-@import 'customer-detail';
+@import 'customers-detail';
+@import 'customers-index';
 @import 'orders-detail';
 
 // Main styles
