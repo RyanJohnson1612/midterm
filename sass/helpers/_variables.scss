@@ -1,0 +1,25 @@
+/***************************************
+  Font Variables
+***************************************/
+
+// Font Families
+$comfortaa: 'Comfortaa', Arial, sans-serif;
+$lato: 'Lato', Arial, sans-serif;
+
+// Font weight helpers
+$thin: 100;
+$light: 300;
+$regular: 400;
+$semibold: 600;
+$bold: 700;
+$black: 900;
+
+/***************************************
+  Helper Variables
+***************************************/
+
+// Full viewport height with an offset for the nav height
+$full-h-nav-offset: calc(100vh - 66px);
+
+// Drop shadow used throughout site
+$drop-shadow: 5px 10px #888888;

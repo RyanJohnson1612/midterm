@@ -41,7 +41,7 @@ module.exports = (db) => {
             });
         }
 
-        res.render("../views/status", {
+        res.render("cart/status", {
           orderItem,
           foodArray,
           id,
