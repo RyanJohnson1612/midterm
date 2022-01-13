@@ -2,14 +2,14 @@
 <html lang="en">
   <!-- Head tag -->
   <%- include('../partials/_head', { title: foodArr.food_name.toUpperCase()}) %>
-  <body class="customer-detail-body">
+  <body class="menus-detail-body">
     <!-- Navbar -->
     <%- include('../partials/_nav') %>
 
     <!-- Menu item -->
-    <section class="customers-detail-bottom-two-content">
-      <img class="customers-detail-picture" src="<%= foodArr.picture_url %>">
-    <section class="right-content">
+    <section class="menus-detail-bottom-two-content">
+      <img class="menus-detail-picture" src="<%= foodArr.picture_url %>">
+    <section class="menus-right-content">
       <h2><%= foodArr.food_name.toUpperCase() %></h2>
       <p><%= foodArr.price %></p>
       <p><%= foodArr.description %></p>

@@ -1,7 +1,7 @@
 /*
- * All routes for Customers are defined here
+ * All routes for Menus are defined here
  * Since this file is loaded in server.js into /menus,
- *   these routes are mounted onto /customers
+ *   these routes are mounted onto /menus
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
@@ -20,7 +20,7 @@ module.exports = (db) => {
         return result.rows;
       })
       .then((result) => {
-        res.render("customers/customers-index.ejs", { foodArr: result, ...req.defaultVars });
+        res.render("menus/menus-index.ejs", { foodArr: result, ...req.defaultVars });
       })
       .catch((err) => {
         console.log("User Null", err.message);
@@ -40,7 +40,7 @@ module.exports = (db) => {
       })
       .then((result) => {
         const cartCount = req.cartCount;
-        res.render("customers/customers-detail.ejs", { foodArr: result[index], ...req.defaultVars });
+        res.render("menus/menus-detail.ejs", { foodArr: result[index], ...req.defaultVars });
       })
       .catch((err) => {
         console.log("User Null", err.message);
@@ -49,7 +49,6 @@ module.exports = (db) => {
 
 
   //Menu Quantity Add Action: Add the food_items_id and quantity to the cookie, in req.session.cart as an object
-
   router.post("/:id/new", (req, res) => {
     const quantity = Number(req.body.quantity);
     const foodID = req.params.id;
@@ -76,7 +75,6 @@ module.exports = (db) => {
       res.redirect("/menus");
     }
   });
-
   return router;
 };
 
