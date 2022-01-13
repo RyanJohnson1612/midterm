@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   "/styles",
   sassMiddleware({
-    source: __dirname + "/styles",
+    source: __dirname + "/sass",
     destination: __dirname + "/public/styles",
     isSass: false, // false => scss, true => sass
   })
@@ -122,7 +122,7 @@ app.post("/customers/:id/new", (req, res) => {
       food_items_id: foodID,
       quantity: quantity,
     });
-    console.log("initializ cart", req.session.cart);
+    console.log("initialize cart", req.session.cart);
     res.redirect("/customers");
   }
 });
