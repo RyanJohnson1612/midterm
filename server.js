@@ -59,12 +59,16 @@ app.use((req, res, next) => { defaultVars(req, res, next) });
 const restaurantsRoutes = require("./routes/restaurants");
 const ordersRoutes = require("./routes/orders");
 const customersRoutes = require("./routes/customers");
+const cartRoutes = require("./routes/cart");
+const checkoutRoutes = require("./routes/checkout");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/orders", ordersRoutes(db));
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/api/customers", customersRoutes(db));
+app.use("/api/cart", cartRoutes(db));
+app.use("/api/checkout", checkoutRoutes(db));
 // Note: mount other resources here, using the same pattern above
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
@@ -105,6 +109,13 @@ app.get("/customers/:id", (req, res) => {
     });
 });
 
+app.get("/cart", (req, res) => {
+  res.render("cart");
+});
+
+app.get("/checkout", (req, res) => {
+  res.render("checkout");
+});
 // customer add quanity to specific food_items
 // req.session is an object with following structure: { food_items_id: 'quantity', food_items_id: 'quantity', food_items_id: 'quantity' }
 app.post("/customers/:id/new", (req, res) => {

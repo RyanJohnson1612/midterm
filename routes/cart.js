@@ -1,9 +1,8 @@
 const express = require("express");
-const { order, setOrder } = require("../global");
 const router = express.Router();
 
 module.exports = (db) => {
-  router.post("/", (req, res) => {
+  router.post("/cart", (req, res) => {
     db.query(`SELECT * FROM food_items;`)
       .then((data) => {
         const items = data.rows;
