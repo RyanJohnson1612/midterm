@@ -38,7 +38,7 @@
   border-color: black;
   border-style: solid;
   border-radius: 25px;
-  box-shadow: 5px 10px #888888;
+  box-shadow: $drop-shadow;
   color: black;
   transition: 0.5s;
 }
@@ -53,6 +53,6 @@
       height: auto;
     }
   }
-  box-shadow: 5px 10px #e86a09fa;
+  box-shadow: 5px 10px $secondary;
 }
 

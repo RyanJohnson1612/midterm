@@ -41,6 +41,22 @@ app.use(
 
 app.use(express.static("public"));
 
+// Get the number of items in the cart and add to req variable, null if no cart
+// Access this in any route with req.cartCount
+// Add it to the template variables inside res.render() to use in ejs template
+app.use((req, res, next) =>{
+  if(req.session.cart) {
+    let cartCount = 0;
+    for (let item of req.session.cart) {
+      cartCount += item.quantity
+    }
+    req.cartCount = cartCount
+  } else {
+    req.cartCount = null;
+  }
+  next();
+});
+
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const restaurantsRoutes = require("./routes/restaurants");
@@ -53,8 +69,6 @@ app.use("/orders", ordersRoutes(db));
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/api/customers", customersRoutes(db));
 // Note: mount other resources here, using the same pattern above
-
-// Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
@@ -67,7 +81,8 @@ app.get("/customers", (req, res) => {
       return result.rows;
     })
     .then((result) => {
-      res.render("customers/customers-index.ejs", { foodArr: result });
+      var cartCount = req.cartCount;
+      res.render("customers/customers-index.ejs", { foodArr: result, cartCount: cartCount });
     })
     .catch((err) => {
       console.log("User Null", err.message);
@@ -84,8 +99,9 @@ app.get("/customers/:id", (req, res) => {
       return result.rows;
     })
     .then((result) => {
+      var cartCount = req.cartCount;
       console.log("foodArr", result[index]);
-      res.render("customers/customers-detail.ejs", { foodArr: result[index] });
+      res.render("customers/customers-detail.ejs", { foodArr: result[index], cartCount: cartCount });
     })
     .catch((err) => {
       console.log("User Null", err.message);
@@ -127,6 +143,7 @@ app.post("/customers/:id/new", (req, res) => {
   }
 });
 
+// Home page
 app.get("/", (req, res) => {
   console.log(req.session.restaurant_id);
   if (req.session.restaurant_id) {

@@ -4,6 +4,13 @@
     <h2>Burgers&Friends</h2>
   </a>
   <div class="right-nav">
-    <a href="/cart">Your Cart</a>
+    <a href="/cart" class="cart-icon">
+      <i class="fas fa-shopping-cart"></i>
+      <% if (cartCount) { %>
+        <div class="cart-count">
+          <span><%= cartCount %></span>
+        </div>
+      <% } %>
+    </a>
   </div>
 </nav>

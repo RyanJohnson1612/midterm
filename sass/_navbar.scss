@@ -21,13 +21,43 @@
     }
   }
 
-  .right-nav a {
-    color: $white;
-    font-weight: bold;
+  .right-nav {
+    .cart-icon {
+      color: $white;
+      font-weight: bold;
+      transition: all 0.25s;
 
-    &:hover {
-      color: $secondary;
-      text-decoration: none;
+      i {
+        font-size: 2em;
+      }
+
+      .cart-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 1.5em;
+        width: 1.5em;
+        position: absolute;
+        bottom: 10px;
+        right: 8px;
+        background: $secondary;
+        border-radius: 1.25em;
+        border: $white solid 2px;
+        transition: all 0.25s;
+      }
+
+      &:hover {
+        color: $secondary;
+        text-decoration: none;
+
+        .cart-count {
+          background-color: $primary;
+
+          span {
+            color: $white;
+          }
+        }
+      }
     }
   }
 }
