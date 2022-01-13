@@ -46,12 +46,14 @@ app.use(express.static("public"));
 const restaurantsRoutes = require("./routes/restaurants");
 const ordersRoutes = require("./routes/orders");
 const customersRoutes = require("./routes/customers");
+const cartRoutes = require("./routes/cart");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/orders", ordersRoutes(db));
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/api/customers", customersRoutes(db));
+app.use("/api/cart", cartRoutes(db));
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -90,6 +92,10 @@ app.get("/customers/:id", (req, res) => {
     .catch((err) => {
       console.log("User Null", err.message);
     });
+});
+
+app.get("/cart", (req, res) => {
+  res.render("cart");
 });
 
 // customer add quanity to specific food_items
