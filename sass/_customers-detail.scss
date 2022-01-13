@@ -37,6 +37,11 @@
   left: 0;
   right: 0;
   padding: 15px;
+
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  box-shadow: 5px 10px #888888;
 }
 
 .right-content {
@@ -44,11 +49,23 @@
   display: block;
   max-width: 100%;
   max-height: 100%;
-  width: 360px;
+  width: 300px;
   height: 380px;
   left: 0;
   right: 0;
   padding: 15px;
+}
+
+.menu-detail-button {
+  background-color: #888888;
+  border-radius: 7px;
+  border-color: black;
+  border-style: solid;
+}
+
+.menu-detail-button:hover {
+  transition: 0.5s;
+  box-shadow: 5px 5px #e86a09fa;
 }
 
 
