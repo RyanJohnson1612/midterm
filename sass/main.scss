@@ -21,7 +21,7 @@
 /****************************************
   Individual Page Partials
 ****************************************/
-// Homepage
+// Homepage partial
 @import 'pages/index';
 
 // Customer partials
@@ -31,6 +31,9 @@
 // Restaurant partials
 @import 'pages/orders-index';
 @import 'pages/orders-detail';
+
+// Error page partial
+@import 'pages/error';
 
 // Main styles
 // If you are putting something here, ask yourself: Could it be its own partial, or fit in an existing partial?
