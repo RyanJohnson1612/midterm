@@ -1,20 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+  <!-- Head tag -->
   <%- include('./partials/_head', { title: 'Orders Index'}) %>
-
   <body>
+    <!-- Navbar -->
     <%- include('./partials/_nav') %>
 
-    <div class="d-flex justify-content-center mt-3">
-      <div class="col-md-4 card text-center p-0">
-        <div class="card-header">
-          <h3 class="card-title mb-0 font-weight-bold">Error</h3>
-        </div>
-        <div class="card-body">
-          <h3><%= errorMsg %></h3>
-          <a href="/" class="btn btn-primary">Return to home page</a>
-        </div>
-      </div>
-    </div>
+    <!-- Error content -->
+    <section id="error-page">
+      <h1 class="">Whoa! You got an error dude.</h1>
+      <h5>Error code:</h5>
+      <p><%= errorMsg %></p>
+      <a href="/" class="btn btn-primary">Return to home page</a>
+    </section>
   </body>
 </html>

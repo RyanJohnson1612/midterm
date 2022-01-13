@@ -1,28 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Head tag -->
 <%- include('partials/_head', { title: 'Home page'}) %>
+  <body>
+    <!-- Navbar -->
+    <%- include('partials/_nav') %>
 
-<body>
-  <!-- Navbar -->
-  <%- include('partials/_nav') %>
-
-  <!-- Site map -->
-  <section id="site-map">
-    <h1>Untitled Food Pickup App</h1>
-    <h2>Pages</h2>
-    <ul>
-      <li><a href="/menu">Menu</a></li>
-      <li><a href="/orders">Orders</a></li>
-      <% if(restaurantId) { %>
-        <li><form action="/api/restaurants/logout" method="POST"><button type="submit">Logout</button></li>
-      <% } else { %>
-        <li><form action="/api/restaurants/login/1" method="POST"><button type="submit">Login</button></li>
-      <% } %>
-    </ul>
-    <% if(restaurantId) { %>
-      <h5>Logged in as: <%= restaurant.name %></h5>
-    <% } %>
-  </section>
-</body>
-
+    <!-- Site map -->
+    <section id="site-map">
+      <h1>Untitled Food Pickup App</h1>
+      <h2>Pages</h2>
+      <ul>
+        <li><a href="/customers">Menu</a></li>
+        <li><a href="/orders">Orders</a></li>
+        <% if(restaurantId) { %>
+          <li><form action="/api/restaurants/logout" method="POST"><button type="submit">Logout</button></li>
+        <% } else { %>
+          <li><form action="/api/restaurants/login/1" method="POST"><button type="submit">Login</button></li>
+        <% } %>
+      </ul>
+    </section>
+  </body>
 </html>

@@ -1,21 +1,9 @@
 .customer-detail-body {
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-
-  background: rgb(163, 208, 219);
-  background: linear-gradient(
-    227deg,
-    rgba(163, 208, 219, 1) 0%,
-    rgba(163, 176, 219, 1) 20%,
-    rgba(163, 173, 219, 1) 34%,
-    rgba(163, 219, 208, 1) 59%,
-    rgba(163, 208, 219, 1) 74%,
-    rgba(163, 208, 219, 1) 100%
-  );
+  min-height: $full-h-nav-offset;
 }
 
 .customers-detail-bottom-two-content {
@@ -24,7 +12,12 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  min-height: 100vh;
+  min-height: $full-h-nav-offset;
+
+  @include for-xs-down {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
 
 .customers-detail-picture {
@@ -37,6 +30,16 @@
   left: 0;
   right: 0;
   padding: 15px;
+
+  border-color: black;
+  border-style: solid;
+  border-radius: 25px;
+  box-shadow: $drop-shadow;
+
+  @include for-sm-down {
+    width: 100%;
+    height: auto;
+  }
 }
 
 .right-content {
@@ -44,11 +47,23 @@
   display: block;
   max-width: 100%;
   max-height: 100%;
-  width: 360px;
+  width: 300px;
   height: 380px;
   left: 0;
   right: 0;
   padding: 15px;
+}
+
+.menu-detail-button {
+  background-color: #888888;
+  border-radius: 7px;
+  border-color: black;
+  border-style: solid;
+}
+
+.menu-detail-button:hover {
+  transition: 0.5s;
+  box-shadow: 5px 5px #e86a09fa;
 }
 
 

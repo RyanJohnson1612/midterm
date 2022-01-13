@@ -35,7 +35,7 @@ module.exports = (db) => {
 
         setOrder({ orderItem, foodArray });
 
-        res.render("../views/checkout", {
+        res.render("cart/checkout", {
           orderItem,
           quantity,
           foodArray,

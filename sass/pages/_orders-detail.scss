@@ -36,7 +36,7 @@
     margin: 20px 0;
     border-color: black;
     border-style: solid;
-    box-shadow: 5px 10px #888888;
+    box-shadow: $drop-shadow;
     color: black;
 
     img {
@@ -94,13 +94,8 @@
       float: right;
       margin: 10px 0;
       padding: 7px 30px;
-      background-color: $primary;
       color: $white;
       font-weight: bold;
-
-      &:hover {
-        background-color: darken($primary, 10%);
-      }
     }
   }
 }
