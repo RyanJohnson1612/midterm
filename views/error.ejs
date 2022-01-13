@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/_head', { title: 'Orders Index'}) %>
+
+  <body>
+    <%- include('./partials/_nav') %>
+
+    <div class="d-flex justify-content-center mt-3">
+      <div class="col-md-4 card text-center p-0">
+        <div class="card-header">
+          <h3 class="card-title mb-0 font-weight-bold">Error</h3>
+        </div>
+        <div class="card-body">
+          <h3><%= errorMsg %></h3>
+          <a href="/" class="btn btn-primary">Return to home page</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

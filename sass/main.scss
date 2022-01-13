@@ -6,13 +6,30 @@
 @import 'variables';
 @import 'mediaqueries';
 
-// Import partials
+// Import base partials
 @import 'layout';
+@import 'navbar';
+
+// Page partials
 @import 'index';
+@import 'customers-detail';
+@import 'customers-index';
+@import 'orders-detail';
 
 // Main styles
 // If you are putting something here, ask yourself: Could it be its own partial, or fit in an existing partial?
 
 body {
   min-height: 100vh;
+  overflow-x: hidden;
+
+  background: rgb(163, 208, 219);
+  background: linear-gradient( 227deg,
+    rgba(163, 208, 219, 1) 0%,
+    rgba(163, 176, 219, 1) 20%,
+    rgba(163, 173, 219, 1) 34%,
+    rgba(163, 219, 208, 1) 59%,
+    rgba(163, 208, 219, 1) 74%,
+    rgba(163, 208, 219, 1) 100%
+  );
 }

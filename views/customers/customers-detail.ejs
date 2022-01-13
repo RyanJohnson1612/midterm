@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('../partials/_head', { title: foodArr.food_name.toUpperCase()}) %>
+  <body class = 'customer-detail-body'>
+    <!-- Navbar -->
+    <%- include('../partials/_nav') %>
+
+    <!-- Menu item -->
+    <section class = 'customers-detail-bottom-two-content'>
+      <img class = 'customers-detail-picture' src="<%= foodArr.picture_url %>">
+    <section class = 'right-content'>
+      <h2><%= foodArr.food_name.toUpperCase() %></h2>
+      <p><%= foodArr.price %></p>
+      <p><%= foodArr.description %></p>
+      <form  action="/customers/<%= foodArr.id %>/new" method="POST">
+          <div>
+            <label for="quantity">Quanity:</label>
+            <input type="number" min = '0' name="quantity" placeholder="0" style="width: 39px; margin: 1em">
+          </div>
+          <button type="submit" >Add to Cart</button>
+      </form>
+    </section>
+    </section>
+
+  </body>
+</html>
