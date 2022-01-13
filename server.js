@@ -3,11 +3,13 @@ require("dotenv").config();
 
 // Web server config
 const PORT = process.env.PORT || 8080;
-const sassMiddleware = require("./lib/sass-middleware");
 const express = require("express");
 const app = express();
-const cookieSession = require("cookie-session");
 const morgan = require("morgan");
+const sassMiddleware = require("./lib/sass-middleware");
+const cookieSession = require("cookie-session");
+const cartCount = require("./middleware/cart-count-middleware");
+const defaultVars = require("./middleware/default-vars-middleware");
 
 // PG database client/connection setup<h1>Your Cart</h1>
 const { Pool } = require("pg");
@@ -44,18 +46,13 @@ app.use(express.static("public"));
 // Get the number of items in the cart and add to req variable, null if no cart
 // Access this in any route with req.cartCount
 // Add it to the template variables inside res.render() to use in ejs template
-app.use((req, res, next) =>{
-  if(req.session.cart) {
-    let cartCount = 0;
-    for (let item of req.session.cart) {
-      cartCount += item.quantity
-    }
-    req.cartCount = cartCount
-  } else {
-    req.cartCount = null;
-  }
-  next();
-});
+app.use((req, res, next) =>{ cartCount(req, res, next) });
+
+// Default variables that should be on every page
+// Include them in res.render template variables like this: ...req.defaultVars
+// Example:
+// res.render('view_name', { example: 'variable', ...req.defaultVars})
+app.use((req, res, next) => { defaultVars(req, res, next) });
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -81,8 +78,8 @@ app.get("/customers", (req, res) => {
       return result.rows;
     })
     .then((result) => {
-      var cartCount = req.cartCount;
-      res.render("customers/customers-index.ejs", { foodArr: result, cartCount: cartCount });
+      console.log(req.defaultVars);
+      res.render("customers/customers-index.ejs", { foodArr: result, ...req.defaultVars });
     })
     .catch((err) => {
       console.log("User Null", err.message);
@@ -99,9 +96,9 @@ app.get("/customers/:id", (req, res) => {
       return result.rows;
     })
     .then((result) => {
-      var cartCount = req.cartCount;
+      const cartCount = req.cartCount;
       console.log("foodArr", result[index]);
-      res.render("customers/customers-detail.ejs", { foodArr: result[index], cartCount: cartCount });
+      res.render("customers/customers-detail.ejs", { foodArr: result[index], ...req.defaultVars });
     })
     .catch((err) => {
       console.log("User Null", err.message);
@@ -148,21 +145,23 @@ app.get("/", (req, res) => {
   console.log(req.session.restaurant_id);
   if (req.session.restaurant_id) {
     db.query(
-      `
-      SELECT *
+      `SELECT *
       FROM restaurants
       WHERE id = $1`,
       [req.session.restaurant_id]
     ).then((data) => {
       const restaurant = data.rows[0];
+      req.session.restaurant = restaurant;
+      // Don't add  ...defaultVars in this render function
       res.render("index", {
         restaurantId: req.session.restaurant_id,
         restaurant: restaurant,
+        cartCount: req.cartCount
       });
     });
   } else {
     console.log("logged out");
-    res.render("index", { restaurantId: null });
+    res.render("index", { ...req.defaultVars });
   }
 });
 

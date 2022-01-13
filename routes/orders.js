@@ -7,7 +7,7 @@
 
 const express = require('express');
 const router  = express.Router();
-const authMiddleware = require("../lib/auth-middleware");
+const authMiddleware = require("../middleware/auth-middleware");
 
 // Required restaurant to be logged in to access order routes
 router.use((req, res, next) => {
@@ -29,7 +29,7 @@ module.exports = (db) => {
     `)
     .then(data => {
       orders = data.rows
-      res.render('restaurants/orders_index', { orders });
+      res.render('restaurants/orders_index', { orders, ...req.defaultVars });
     })
     .catch(err => {
       res
@@ -51,8 +51,7 @@ module.exports = (db) => {
     `, [req.params.id])
       .then(data => {
         const order = data.rows[0];
-        // res.json({order});
-        res.render('restaurants/orders_detail.ejs', { order });
+        res.render('restaurants/orders_detail.ejs', { order, ...req.defaultVars });
       })
       .catch(err => {
         res
