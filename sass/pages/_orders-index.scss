@@ -7,9 +7,23 @@
     font-family: $comfortaa;
     font-weight: $black;
   }
+  .orders-table-container {
+    width: 100%;
+    overflow-x: scroll;
+    padding: 1em;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    @include for-md-down {
+      -ms-overflow-style: auto;
+      scrollbar-width: auto;
+    }
+  }
 
   .orders-table {
     width: 100%;
+    min-width: 900px;
     margin-top: 1.5em;
     padding: 0.5em;
     background: white;
