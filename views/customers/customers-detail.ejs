@@ -14,10 +14,10 @@
       <p><%= foodArr.description %></p>
       <form  action="/customers/<%= foodArr.id %>/new" method="POST">
           <div>
-            <label for="quantity">Quanity:</label>
+            <label for="quantity">Quantity:</label>
             <input type="number" min = '0' name="quantity" placeholder="0" style="width: 39px; margin: 1em">
           </div>
-          <button type="submit" >Add to Cart</button>
+          <button class = 'menu-detail-button'type="submit" >Add to Cart</button>
       </form>
     </section>
     </section>
