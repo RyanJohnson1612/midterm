@@ -1,9 +1,12 @@
 <nav class="navbar">
   <a class="logo-link" href="/">
     <img class="logo" src="/images/burger-logo.png" alt="Burgers&Friends Logo" width="50">
-    <h2>Burgers&Friends</h2>
+    <h2 class="name-desktop">Burgers&Friends</h2>
+    <h2 class="name-mobile">B&F</h2>
   </a>
   <div class="right-nav">
+    <!-- If restaurant isn't logged in show cart-->
+    <% if(!restaurantId) { %>
     <a href="/cart" class="cart-icon">
       <i class="fas fa-shopping-cart"></i>
       <% if (cartCount) { %>
@@ -11,6 +14,21 @@
           <span><%= cartCount %></span>
         </div>
       <% } %>
+    <!-- If restaurant is logged in show user options -->
+    <% } else { %>
+      <div class="restaurant-options">
+        <div>
+          <%= restaurant.name %>
+          <i class="fas fa-caret-down"></i>
+        </div>
+        <div class="restaurant-dropdown">
+          <ul>
+            <li><a href="/orders">View orders</a></li>
+            <li><form action="/api/restaurants/logout" method="POST"><button type="submit">Logout</button></li>
+          </ul>
+        </div>
+      </div>
+    <% } %>
     </a>
   </div>
 </nav>
