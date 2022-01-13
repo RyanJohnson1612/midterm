@@ -19,6 +19,9 @@
         <li><form action="/api/restaurants/login/1" method="POST"><button type="submit">Login</button></li>
       <% } %>
     </ul>
+    <% if(restaurantId) { %>
+      <h5>Logged in as: <%= restaurant.name %></h5>
+    <% } %>
   </section>
 </body>
 

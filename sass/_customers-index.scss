@@ -37,6 +37,7 @@
   left: 0;
   right: 0;
   padding-bottom: 5px;
+  transition: 0.5s;
 }
 
 .customers-index-thumbnail {
@@ -47,6 +48,7 @@
   border-radius: 25px;
   box-shadow: 5px 10px #888888;
   color: black;
+  transition: 0.5s;
 }
 
 .customers-index-thumbnail:hover {

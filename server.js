@@ -42,10 +42,12 @@ app.use(express.static("public"));
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const restaurantsRoutes = require("./routes/restaurants");
+const ordersRoutes = require("./routes/orders");
 const customersRoutes = require("./routes/customers");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+app.use("/orders", ordersRoutes(db));
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/api/customers", customersRoutes(db))
 // Note: mount other resources here, using the same pattern above
@@ -121,8 +123,14 @@ app.post("/customers/:id/new", (req, res) => {
 app.get("/", (req, res) => {
   console.log(req.session.restaurant_id);
   if(req.session.restaurant_id) {
-    console.log('logged in');
-    res.render("index", {'restaurantId': req.session.restaurant_id});
+    db.query(`
+      SELECT *
+      FROM restaurants
+      WHERE id = $1`, [req.session.restaurant_id])
+      .then((data) => {
+        const restaurant = data.rows[0];
+        res.render("index", { restaurantId: req.session.restaurant_id, restaurant: restaurant });
+      })
   } else {
     console.log('logged out');
     res.render("index", {'restaurantId': null});
