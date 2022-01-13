@@ -1,5 +1,7 @@
 .customers-index-body {
 
+
+
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -20,6 +22,8 @@
 
 
 .customers-index-container {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
