@@ -7,6 +7,7 @@
 
 const express = require("express");
 const router = express.Router();
+const { sendMessage } = require("../helpers/sendMessage");
 
 module.exports = (db, database) => {
   router.get("/", (req, res) => {
@@ -57,9 +58,12 @@ module.exports = (db, database) => {
       database.createCustomer(req.body.name, req.body.phone_number)
         .then(customer => database.createOrder(1, customer.id, req.body.preferred_pickup))
         .then(order => database.bridgeOrderFoodItems(order.id, req.session.cart))
+        .then(order => database.getOrderWithId(order.order_id))
         .then(order => {
           req.session.cart = null;
-          res.redirect(`/confirmation/${order.order_id}`);
+          // incoming text hard, maybe do later
+          // sendMessage(`+1${order.restaurant_phone_number}`, `+1${order.customer_phone_number}`, `Hello ${order.restaurant_name}, a new order has been placed! Check your orders to confirm.`);
+          res.redirect(`/confirmation/${order.id}`);
         })
     }
   });
