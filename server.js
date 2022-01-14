@@ -46,13 +46,17 @@ app.use(express.static("public"));
 // Get the number of items in the cart and add to req variable, null if no cart
 // Access this in any route with req.cartCount
 // Add it to the template variables inside res.render() to use in ejs template
-app.use((req, res, next) =>{ cartCount(req, res, next) });
+app.use((req, res, next) => {
+  cartCount(req, res, next);
+});
 
 // Default variables that should be on every page
 // Include them in res.render template variables like this: ...req.defaultVars
 // Example:
 // res.render('view_name', { example: 'variable', ...req.defaultVars})
-app.use((req, res, next) => { defaultVars(req, res, next) });
+app.use((req, res, next) => {
+  defaultVars(req, res, next);
+});
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -83,7 +87,10 @@ app.get("/customers", (req, res) => {
     })
     .then((result) => {
       console.log(req.defaultVars);
-      res.render("customers/customers-index.ejs", { foodArr: result, ...req.defaultVars });
+      res.render("customers/customers-index.ejs", {
+        foodArr: result,
+        ...req.defaultVars,
+      });
     })
     .catch((err) => {
       console.log("User Null", err.message);
@@ -102,7 +109,10 @@ app.get("/customers/:id", (req, res) => {
     .then((result) => {
       const cartCount = req.cartCount;
       console.log("foodArr", result[index]);
-      res.render("customers/customers-detail.ejs", { foodArr: result[index], ...req.defaultVars });
+      res.render("customers/customers-detail.ejs", {
+        foodArr: result[index],
+        ...req.defaultVars,
+      });
     })
     .catch((err) => {
       console.log("User Null", err.message);
@@ -110,11 +120,11 @@ app.get("/customers/:id", (req, res) => {
 });
 
 app.get("/cart", (req, res) => {
-  res.render("cart");
+  res.render("cart/cart.ejs");
 });
 
 app.get("/checkout", (req, res) => {
-  res.render("checkout");
+  res.render("cart/checkout.ejs");
 });
 // customer add quanity to specific food_items
 // req.session is an object with following structure: { food_items_id: 'quantity', food_items_id: 'quantity', food_items_id: 'quantity' }
@@ -167,7 +177,7 @@ app.get("/", (req, res) => {
       res.render("index", {
         restaurantId: req.session.restaurant_id,
         restaurant: restaurant,
-        cartCount: req.cartCount
+        cartCount: req.cartCount,
       });
     });
   } else {
