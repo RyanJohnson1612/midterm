@@ -1,4 +1,4 @@
-const express = require("express");
+/* const express = require("express");
 const { getOrder } = require("../global");
 
 const router = express.Router();
@@ -41,7 +41,7 @@ module.exports = (db) => {
             });
         }
 
-        res.render("cart/status", {
+        res.render("cart/confirmation", {
           orderItem,
           foodArray,
           id,
@@ -53,3 +53,4 @@ module.exports = (db) => {
   });
   return router;
 };
+*/
