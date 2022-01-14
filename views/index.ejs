@@ -19,9 +19,9 @@
         <a href="/menus" class="index-view-menu"> View Menu </a>
 
       <% if(restaurantId) { %>
-          <form action="/api/restaurants/logout" method="POST"><button type="submit" class="btn btn-primary index-login-button">Logout</button>
+          <form action="/restaurants/logout" method="POST"><button type="submit" class="btn btn-primary index-login-button">Logout</button>
         <% } else { %>
-          <form action="/api/restaurants/login/1" method="POST"><button type="submit" class="btn btn-primary index-login-button">Login</button>
+          <form action="/restaurants/login/1" method="POST"><button type="submit" class="btn btn-primary index-login-button">Login</button>
         <% } %>
       </div>
 

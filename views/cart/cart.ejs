@@ -7,30 +7,53 @@
     <%- include('../partials/_nav') %>
 
     <!-- Cart -->
-    <h1>Your Cart</h1>
-    <p>Food Items <%= foodArr.length %></p>
+    <div class="cart-container">
+      <% if (foodArr.length > 0) { %>
+        <section id="order-food">
+          <div class="col-md-8">
+            <h1>Your Cart</h1>
+            <h2>Food ordered</h2>
+            <% for (let food of foodArr) { %>
+              <article class="order-food-card">
+                <div>
+                  <img src="<%= food.picture_url %>" width="150">
+                  <div>
+                    <h4><%= food.food_name %></h4>
+                    <p>Quantity: <%= food.quantity %></p>
+                  </div>
+                </div>
+                <h4>$<%= Number(food.price.replace('$', '')) * food.quantity %></h4>
+                </ul>
+              </article>
+            <% } %>
 
-    <section id="order-food">
-      <div class="col-md-8">
-        <h2>Food ordered</h2>
-        <% for (let food of foodArr) { %>
-          <article class="order-food-card">
-            <div>
-              <img src="<%= food.picture_url %>" width="150">
-              <div>
-                <h4><%= food.food_name %></h4>
-                <p>Quantity: <%= food.quantity %></p>
-              </div>
-            </div>
-            <h4><%= food.price %></h4>
-            </ul>
-          </article>
-        <% } %>
-        <h3 class="order-total"><span>Total</span> $<%= sum %></h3>
-      </div>
-
-    </section>
-      </div>
+            <% if (sum) { %>
+              <h3 class="order-total"><span>Total</span> $<%= sum %></h3>
+            <% } %>
+          </div>
+        </section>
+        <section class="checkout-form">
+          <div class="col-md-8">
+            <h3>Checkout</h3>
+            <form action="/cart/create" method="POST">
+              <label>Name</label>
+              <input type="text" name="name" class="form-control">
+              <label>Phone number</label>
+              <input type="text" name="phone_number" class="form-control">
+              <label>Preferred Pickup Time</label>
+              <input type="time" name="preferred_pickup" class="form-control">
+              <button type="submit" class="btn btn-primary">Checkout</button>
+            </form>
+          </div>
+        </section>
+      <% } else { %>
+        <section class="empty-cart">
+          <div class="col-md-8">
+            <p>Your cart is empty.</p>
+            <a href="/menus" class="btn btn-primary">Browse our menu</a>
+          </div>
+        </section>
+      <% } %>
     </div>
   </body>
 </html>

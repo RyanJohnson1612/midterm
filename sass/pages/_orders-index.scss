@@ -75,6 +75,9 @@
             border-bottom-right-radius: 25px;
           }
         }
+        td:nth-of-type(4) {
+          text-transform: capitalize;
+        }
 
         td:nth-of-type(5), td:nth-of-type(6) {
           text-align: center;

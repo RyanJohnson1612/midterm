@@ -1,55 +1,11 @@
 // Styles for the index page
-// #site-map {
-//   padding: 1em;
-//   font-family: $comfortaa;
-
-//   h1 {
-//     font-weight: $black;
-//   }
-
-//   h2 {
-//     margin-left: 0.5em;
-//     font-family: $lato;
-//   }
-
-//   p {
-//     margin-left: 0.5em;
-//     margin-bottom: 0.75em;
-//     font-weight: $semibold;
-//     font-size: 2em;
-//   }
-
-//   a {
-//     font-family: $lato;
-//     color: black;
-
-//     &:hover {
-//       color: $primary;
-//       text-decoration: none;
-//     }
-//   }
-
-//   button {
-//     padding: 0;
-//     border: none;
-//     background-color: transparent;
-//     color: black;
-//     font-family: $lato;
-
-//     &:hover {
-//       color: $primary;
-//       cursor: pointer;
-//     }
-//   }
-// }
-
 .index-body {
   font-family: $comfortaa;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: $full-h-nav-offset;
+  min-height: 100vh;
 }
 
 .index-container {
