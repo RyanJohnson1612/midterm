@@ -2,23 +2,30 @@
 <html lang="en">
 <!-- Head tag -->
 <%- include('partials/_head', { title: 'Home page'}) %>
-  <body>
+  <body class="index-body">
     <!-- Navbar -->
     <%- include('partials/_nav') %>
 
     <!-- Site map -->
-    <section id="site-map">
-      <h1>Untitled Food Pickup App</h1>
-      <h2>Pages</h2>
-      <ul>
-        <li><a href="/menus">Menu</a></li>
-        <li><a href="/orders">Orders</a></li>
-        <% if(restaurantId) { %>
-          <li><form action="/api/restaurants/logout" method="POST"><button type="submit">Logout</button></form></li>
+    <section class="index-container">
+      <h1>Burgers&Friends Pickup App</h1>
+
+      <img class="index-logo" src="/images/burger-logo.png" alt="Burgers&Friends Logo">
+
+      <div class="index-buttons">
+
+        <a href="/orders" class="index-view-orders"> View Orders </a>
+
+        <a href="/menus" class="index-view-menu"> View Menu </a>
+
+      <% if(restaurantId) { %>
+          <form action="/api/restaurants/logout" method="POST"><button type="submit" class="btn btn-primary index-login-button">Logout</button>
         <% } else { %>
-          <li><form action="/api/restaurants/login/1" method="POST"><button type="submit">Login</button></form></li>
+          <form action="/api/restaurants/login/1" method="POST"><button type="submit" class="btn btn-primary index-login-button">Login</button>
         <% } %>
-      </ul>
+      </div>
+
+
     </section>
   </body>
 </html>

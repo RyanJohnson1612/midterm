@@ -51,7 +51,7 @@ module.exports = (db) => {
   //Menu Quantity Add Action: Add the food_items_id and quantity to the cookie, in req.session.cart as an object
   router.post("/:id/new", (req, res) => {
     const quantity = Number(req.body.quantity);
-    const foodID = req.params.id;
+    const foodID = Number(req.params.id);
     if (req.session.cart) {
       let cart = req.session.cart;
       for (let item of cart) {
@@ -77,6 +77,8 @@ module.exports = (db) => {
   });
   return router;
 };
+
+
 
 
 
