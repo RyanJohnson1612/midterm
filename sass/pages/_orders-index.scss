@@ -1,0 +1,103 @@
+#orders-index {
+  min-height: $full-h-nav-offset;
+  padding: 2em;
+
+  h1 {
+    font-size: 1.5em;
+    font-family: $comfortaa;
+    font-weight: $black;
+  }
+  .orders-table-container {
+    width: 100%;
+    overflow-x: scroll;
+    padding: 1em;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    @include for-md-down {
+      -ms-overflow-style: auto;
+      scrollbar-width: auto;
+    }
+  }
+
+  .orders-table {
+    width: 100%;
+    min-width: 900px;
+    margin-top: 1.5em;
+    padding: 0.5em;
+    background: white;
+
+    // sick rounded table and border hack, aren't tables wonderful
+    border-style: hidden;
+    box-shadow: 0 0 0 3px black;
+    border-radius: 25px;
+
+    .table-header {
+      th {
+        padding: 1em;
+        background: $primary;
+        color: white;
+        font-weight: $bold;
+      }
+
+      tr {
+        th:first-of-type {
+          border-top-left-radius: 25px;
+        }
+
+        th:last-of-type {
+          border-top-right-radius: 25px;
+        }
+
+        th:nth-of-type(5), th:nth-of-type(6) {
+          text-align: center;
+        }
+      }
+    }
+
+    .table-body {
+      td {
+        padding: 0.5em 1em;
+      }
+
+      tr {
+        &:nth-of-type(2n) {
+          background: #0aa3ad2b;
+        }
+
+        &:last-of-type {
+          td:first-of-type {
+            border-bottom-left-radius: 25px;
+          }
+
+          td:last-of-type {
+            border-bottom-right-radius: 25px;
+          }
+        }
+
+        td:nth-of-type(5), td:nth-of-type(6) {
+          text-align: center;
+          font-size: 1.5em;
+
+          .fa-times {
+            color: $danger;
+          }
+
+          .fa-check {
+            color: $success;
+          }
+        }
+
+        &:hover {
+          background: #0aa3ad40;
+          cursor: pointer;
+        }
+      }
+    }
+
+    a {
+      color: white;
+    }
+  }
+}
