@@ -7,11 +7,23 @@
     <%- include('../partials/_nav') %>
 
     <!-- Order confirmation -->
-    <main>
+    <main class="order-details-container">
       <section id="order-details">
         <div class="col-md-8">
-          <h1><%= order.customer_name %>'s Order</h1>
+          <h1>
+            <%= order.customer_name %>'s Order
+              <% if (order.confirmed && order.completed) { %>
+                - <span>Order Complete</span>
+              <% } else if (order.confirmed && !order.completed) { %>
+                - <span>Order Confirmed</span>
+              <% } else { %>
+                - <span>Order Pending</span>
+              <% } %>
+          </h1>
           <h3>Thank you for your order</h3>
+          <% if (order.estimated_pickup) { %>
+            <h4>Estimated pickup time: <%= order.estimated_pickup %></h4>
+          <% } %>
           <ul class="order-info">
             <li><span>Order Number:</span> <%= order.id %></li>
             <li><span>Phone Number:</span> <%= order.customer_phone_number %></li>
@@ -36,11 +48,11 @@
                 </div>
               </div>
               <h4><%= food.price %></h4>
-              </ul>
             </article>
           <% } %>
           <h3 class="order-total"><span>Total:</span> <%= order.total %></h3>
         </div>
       </section>
     </main>
+  </body>
 </html>

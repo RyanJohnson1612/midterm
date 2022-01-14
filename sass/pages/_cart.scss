@@ -1,0 +1,41 @@
+.cart-container {
+  min-height: $full-h-nav-offset;
+  margin: 0 auto;
+  padding: 1em;
+
+  h1 {
+    font-family: $comfortaa;
+  }
+
+  .empty-cart {
+    padding: 1em;
+
+    p {
+      font-size: 1.5em;
+    }
+  }
+
+  .checkout-form {
+    h3 {
+      font-family: $comfortaa;
+      font-weight: $black;
+    }
+
+    div {
+      margin: 0 auto;
+    }
+
+    form {
+      max-width: 400px;
+
+      label {
+        margin-top: 0.5em;
+        font-weight: $bold;
+      }
+
+      button {
+        margin-top: 1em;
+      }
+    }
+  }
+}

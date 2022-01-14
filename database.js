@@ -96,3 +96,41 @@ exports.confirmOrder = confirmOrder;
     .catch((err) => err.message)
 };
 exports.completeOrder = completeOrder;
+
+const createCustomer = (name, phoneNumber) => {
+  return pool
+    .query(`
+      INSERT INTO customers (name, phone_number)
+      VALUES ($1, $2)
+      RETURNING id;
+    `,[name, phoneNumber])
+    .then((result) => result.rows[0])
+    .catch((err) => err.message)
+}
+exports.createCustomer = createCustomer;
+
+const createOrder = (restaurantId, customerId, preferredPickup) => {
+  return pool
+    .query(`
+      INSERT INTO orders (restaurant_id, customer_id, preferred_pickup)
+      VALUES ($1, $2, $3)
+      RETURNING id;
+    `,[restaurantId, customerId, preferredPickup])
+    .then((result) => result.rows[0])
+    .catch((err) => err.message)
+}
+exports.createOrder = createOrder;
+
+const bridgeOrderFoodItems = (orderId, cart) => {
+  let queries = [];
+  cart.forEach((item) => {
+    queries.push(
+      pool.query('INSERT INTO order_food_items (food_item_id, order_id, quantity) VALUES ($1, $2, $3) RETURNING order_id', [item.food_items_id, orderId, item.quantity])
+    )
+  })
+
+  return Promise.all(queries)
+    .then((result) => result[0].rows[0])
+    .catch((err) => err.message)
+}
+exports.bridgeOrderFoodItems = bridgeOrderFoodItems;
