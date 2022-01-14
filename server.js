@@ -8,10 +8,12 @@ const app = express();
 const morgan = require("morgan");
 const sassMiddleware = require("./lib/sass-middleware");
 const cookieSession = require("cookie-session");
+
+// Custom middleware
 const cartCount = require("./middleware/cart-count-middleware");
 const defaultVars = require("./middleware/default-vars-middleware");
 
-// PG database client/connection setup<h1>Your Cart</h1>
+// PG database client/connection setup
 const { Pool } = require("pg");
 const dbParams = require("./lib/db.js");
 const db = new Pool(dbParams);
@@ -86,7 +88,6 @@ app.use("/cart", cartRoutes(db));
 
 // Home page
 app.get("/", (req, res) => {
-  console.log(req.session.restaurant_id);
   if (req.session.restaurant_id) {
     db.query(
       `SELECT *
@@ -104,7 +105,6 @@ app.get("/", (req, res) => {
       });
     });
   } else {
-    console.log("logged out");
     res.render("index", { ...req.defaultVars });
   }
 });
