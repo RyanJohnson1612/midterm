@@ -7,8 +7,9 @@
 
 const express = require("express");
 const router = express.Router();
+const { sendMessage } = require("../helpers/sendMessage");
 
-module.exports = (db) => {
+module.exports = (db, database) => {
   router.get("/", (req, res) => {
     console.log('there is something in the cart', req.session.cart);
     if (req.session.cart) {
@@ -47,52 +48,25 @@ module.exports = (db) => {
           console.log("User Null", err.message);
         });
     } else {
-        res.render('cart/cart', {foodArr: [], ...req.defaultVars});
+        res.render('cart/cart', {foodArr: [], sum: null, ...req.defaultVars});
     }
-
-
   });
+
+  router.post("/create", (req, res) => {
+    if(req.session.cart) {
+      // Restaurant id is hard coded because there is only one restaurant, change if multiple
+      database.createCustomer(req.body.name, req.body.phone_number)
+        .then(customer => database.createOrder(1, customer.id, req.body.preferred_pickup))
+        .then(order => database.bridgeOrderFoodItems(order.id, req.session.cart))
+        .then(order => database.getOrderWithId(order.order_id))
+        .then(order => {
+          req.session.cart = null;
+          // incoming text hard, maybe do later
+          // sendMessage(`+1${order.restaurant_phone_number}`, `+1${order.customer_phone_number}`, `Hello ${order.restaurant_name}, a new order has been placed! Check your orders to confirm.`);
+          res.redirect(`/confirmation/${order.id}`);
+        })
+    }
+  });
+
   return router;
 };
-
-//   db.query(`SELECT * FROM food_items;`)
-  //     .then((data) => {
-  //       const items = data.rows;
-  //       // console.log("items", items)
-  //       console.log(req.body);
-
-  //       let userData = req.body;
-  //       let foodArray = [];
-
-  //       for (let item in userData) {
-  //         if (userData[item] !== "") {
-  //           foodArray.push({ name: item, quantity: Number(userData[item]) });
-  //         }
-  //       }
-
-  //       let orderItem = [];
-  //       for (let i = 0; i < items.length; i++) {
-  //         for (let j = 0; j < foodArray.length; j++) {
-  //           if (foodArray[j].name == items[i].name) {
-  //             orderItem.push(items[i]);
-  //           }
-  //         }
-  //       }
-  //       let quantity = 0;
-  //       for (let b = 0; b < foodArray.length; b++) {
-  //         quantity += foodArray[b].quantity;
-  //       }
-
-  //       console.log(foodArray);
-
-  //       setOrder({ orderItem, foodArray });
-
-  //       res.render("cart/checkout", {
-  //         orderItem,
-  //         quantity,
-  //         foodArray,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).json({ error: err.message });
-  //     });

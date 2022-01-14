@@ -1,11 +1,21 @@
+.order-details-container {
+  min-height: $full-h-nav-offset;
+}
+
 #order-details {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 1em;
 
   h1 {
     font-weight: bold;
     margin-bottom: 10px;
+
+    span {
+      font-family: $comfortaa;
+      color: $primary;
+    }
   }
 
   .order-info {
