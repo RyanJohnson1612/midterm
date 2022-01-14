@@ -31,8 +31,10 @@ Upon a customer choosing the type and the quantity for each food item, the infor
 - twilio ^3.73.0
 
 ## Screenshots
-!["Screenshot of entering new tweets"](https://github.com/daniel-cy-lu/tweeter/blob/master/docs/tweet_box_chat.png?raw=true)
-!["Screenshot of selector shadow when hovering over icons"](https://github.com/daniel-cy-lu/tweeter/blob/master/docs/tweet_box_selector_shadow.png?raw=true)
-!["Screenshot of an error message prompting user not to tweet an empty line"](https://github.com/daniel-cy-lu/tweeter/blob/master/docs/tweet_box_short_text_error.png?raw=true)
-!["Screenshot of a warning when a new tweet has too many letters"](https://github.com/daniel-cy-lu/tweeter/blob/master/docs/tweet_box_long_text_warning.png?raw=true)
-!["Screenshot of adjustment when width is narrower"](https://github.com/daniel-cy-lu/tweeter/blob/master/docs/tweet_box_narrow_dimension_adjustment.png?raw=true)
+!["Screenshot of the index page"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/1.%20index.png)
+!["Screenshot of menu (customer side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/2.%20menus-index.png)
+!["Screenshot of detail information of a food item (customer side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/3.%20menus-detail.png)
+!["Screenshot of detail information of another food item (customer side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/4.%20menus-detail(2).png)
+!["Screenshot of the cart with a summary of food item and quantity (customer side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/5.%20carts.png)
+!["Screenshot of the table with all orders (restaurant side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/6.%20orders-index.png)
+!["Screenshot of detail information of an individual order (restaurant side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/7.%20orders-detail.png)
