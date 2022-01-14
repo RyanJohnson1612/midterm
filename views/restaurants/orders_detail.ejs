@@ -10,8 +10,12 @@
         <div class="col-md-8">
           <h1>
             <%= order.customer_name %>'s Order
-              <% if (order.confirmed && order.completed) { %>
-              - <span>Order Complete</span>
+            <% if (order.confirmed && order.completed) { %>
+              - <span>Completed</span>
+            <% } else if (order.confirmed && !order.completed) { %>
+              - <span>Confirmed</span>
+            <% } else { %>
+              - <span>Not Confirmed</span>
             <% } %>
           </h1>
           <ul class="order-info">

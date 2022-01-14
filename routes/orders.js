@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const authMiddleware = require("../middleware/auth-middleware");
 const { sendMessage } = require("../helpers/sendMessage");
+const moment = require('moment');
 
 // Required restaurant to be logged in to access order routes
 router.use((req, res, next) => {
@@ -21,6 +22,9 @@ module.exports = (database) => {
   router.get("/", (req, res) => {
     database.getAllOrders()
     .then(orders => {
+      orders.forEach((order, i) => {
+        orders[i].order_date = moment(order.order_date).format('dddd, MMMM Do YYYY, h:mm:ss a');
+      })
       res.render('restaurants/orders_index', { orders, ...req.defaultVars });
     })
     .catch(err => {
@@ -35,6 +39,7 @@ module.exports = (database) => {
   router.get("/:id", (req, res) => {
     database.getOrderWithId(req.params.id)
       .then(order => {
+        order.order_date = moment(order.order_date).format('dddd, MMMM Do YYYY, h:mm:ss a');
         res.render('restaurants/orders_detail.ejs', { order, ...req.defaultVars });
       })
       .catch(err => {
@@ -79,5 +84,6 @@ module.exports = (database) => {
           });
       }
   });
+
   return router;
 };
