@@ -19,7 +19,7 @@ const sendMessage = (to, from, body, cb = (response) => { return response; }) =>
       cb(message);
     })
     .catch((error) => {
-      console.log(`Error sending message ${to}`);
+      console.log(`Error sending message ${to}`, error);
       cb(error);
     });
 };

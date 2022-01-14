@@ -31,7 +31,7 @@
           <tbody class="table-body">
             <% for (let order of orders) { %>
               <tr class="table-row">
-                <td><%= new Date(order.order_date).toString().replace('GMT+0000 (Coordinated Universal Time)', '') %></td>
+                <td><%= order.order_date %></td>
                 <td><%= order.name %></td>
                 <td><%= order.phone_number %></td>
                 <td>

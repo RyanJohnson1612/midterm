@@ -25,7 +25,7 @@ const getAllOrders = (limit = 8) => {
       JOIN order_food_items ON order_id = orders.id
       JOIN food_items ON food_items.id = food_item_id
       GROUP BY orders.id, customers.name, customers.phone_number
-      ORDER BY order_date
+      ORDER BY order_date DESC
       LIMIT $1;
     `, [limit])
     .then((result) => result.rows)

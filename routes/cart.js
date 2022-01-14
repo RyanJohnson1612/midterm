@@ -62,7 +62,8 @@ module.exports = (db, database) => {
         .then(order => {
           req.session.cart = null;
           // incoming text hard, maybe do later
-          // sendMessage(`+1${order.restaurant_phone_number}`, `+1${order.customer_phone_number}`, `Hello ${order.restaurant_name}, a new order has been placed! Check your orders to confirm.`);
+          // currently being faked for demo
+          sendMessage(`+1${order.customer_phone_number}`, `+1${order.restaurant_phone_number}`, `Hello ${order.restaurant_name}, a new order has been placed! Check your orders to confirm.`);
           res.redirect(`/confirmation/${order.id}`);
         })
     }

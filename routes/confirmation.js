@@ -7,11 +7,13 @@
 
 const express = require("express");
 const router = express.Router();
+const moment = require('moment');
 
 module.exports = (database) => {
   router.get("/:id", (req, res) => {
     database.getOrderWithId(req.params.id)
       .then(order => {
+        order.order_date = moment(order.order_date).format('dddd, MMMM Do YYYY, h:mm:ss a');
         res.render('cart/confirmation', { order, ...req.defaultVars })
       })
   });

@@ -11,16 +11,16 @@
       <section id="order-details">
         <div class="col-md-8">
           <h1>
-            <%= order.customer_name %>'s Order
+            Your Order
               <% if (order.confirmed && order.completed) { %>
-                - <span>Order Complete</span>
+                - <span>Ready for pick up</span>
               <% } else if (order.confirmed && !order.completed) { %>
-                - <span>Order Confirmed</span>
+                - <span>Confirmed</span>
               <% } else { %>
-                - <span>Order Pending</span>
+                - <span>Pending</span>
               <% } %>
           </h1>
-          <h3>Thank you for your order</h3>
+          <h3>Thank you for your order, <%= order.customer_name %></h3>
           <% if (order.estimated_pickup) { %>
             <h4>Estimated pickup time: <%= order.estimated_pickup %></h4>
           <% } %>
