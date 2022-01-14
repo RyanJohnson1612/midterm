@@ -67,7 +67,7 @@ const cartRoutes = require("./routes/cart");
 app.use("/orders", ordersRoutes(db));
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/menus", menusRoutes(db));
-app.use("/api/cart", cartRoutes(db));
+app.use("/cart", cartRoutes(db));
 //app.use("/api/checkout", checkoutRoutes(db));
 // Note: mount other resources here, using the same pattern above
 // Warning: avoid creating more routes in this file!

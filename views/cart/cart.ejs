@@ -4,12 +4,36 @@
   <%- include('../partials/_head', { title: 'Checkout' }) %>
   <body>
     <!-- Navbar-->
-    <%- include('partials/_nav') %>
+    <%- include('../partials/_nav') %>
 
     <!-- Cart -->
     <h1>Your Cart</h1>
+    <p>Food Items <%= foodArr.length %></p>
 
-    <div class="shopping-cart">
+    <section id="order-food">
+      <div class="col-md-8">
+        <h2>Food ordered</h2>
+        <% for (let food of foodArr) { %>
+          <article class="order-food-card">
+            <div>
+              <img src="<%= food.picture_url %>" width="150">
+              <div>
+                <h4><%= food.food_name %></h4>
+                <p>Quantity: <%= food.quantity %></p>
+              </div>
+            </div>
+            <h4><%= food.price %></h4>
+            </ul>
+          </article>
+        <% } %>
+        <h3 class="order-total"><span>Total</span> $<%= sum %></h3>
+        
+      </div>
+
+    </section>
+
+
+    <!-- <div class="shopping-cart">
       <div class="column-labels">
         <label class="product-image">Image</label>
         <label class="product-details">Product</label>
@@ -35,9 +59,9 @@
             <button class="remove-product">Remove</button>
           </div>
           <div class="product-line-price">13.98</div>
-        </div>
+        </div> -->
 
-        <div class="product">
+        <!-- <div class="product">
           <div class="product-image">
             <img
               src="https://cdn.pixabay.com/photo/2014/10/19/20/59/hamburger-494706_1280.jpg"
@@ -54,9 +78,9 @@
             <button class="remove-product">Remove</button>
           </div>
           <div class="product-line-price">11.99</div>
-        </div>
+        </div> -->
 
-        <div class="totals">
+        <!-- <div class="totals">
           <div class="totals-item">
             <label>Subtotal</label>
             <div class="totals-value" id="cart-subtotal">25.97</div>
@@ -69,9 +93,9 @@
             <label>Total</label>
             <div class="totals-value" id="cart-total">20.00</div>
           </div>
-        </div>
+        </div> -->
 
-        <button class="checkout">Checkout</button>
+
       </div>
     </div>
   </body>
