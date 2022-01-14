@@ -5,9 +5,15 @@
 
   <body>
     <%- include('../partials/_nav') %>
+    <main class="order-details-container">
       <section id="order-details">
         <div class="col-md-8">
-          <h1><%= order.customer_name %>'s Order</h1>
+          <h1>
+            <%= order.customer_name %>'s Order
+              <% if ((order.confirmed && order.completed)) { %>
+              - <span>Order Complete</span>
+            <% } %>
+          </h1>
           <ul class="order-info">
             <li><span>Order Number:</span> <%= order.id %></li>
             <li><span>Phone Number:</span> <%= order.customer_phone_number %></li>
@@ -52,11 +58,12 @@
           <form action="/orders/<%= order.id %>/update" method="POST" class="col-md-8">
             <div>
               <input type="hidden" value="true" name="completed">
-              <button type="submit" class="btn btn-primary">Order Completed</button>
+              <button type="submit" class="btn btn-primary">Complete Order</button>
             </div>
           </form>
         <% } %>
       </section>
+    </main>
   </body>
 </html>
 

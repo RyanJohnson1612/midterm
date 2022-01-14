@@ -1,6 +1,9 @@
 // load .env data into process.env
 require("dotenv").config();
 
+// Get database query functions
+const database = require('./database');
+
 // Web server config
 const PORT = process.env.PORT || 8080;
 const express = require("express");
@@ -73,7 +76,7 @@ const { rows } = require("pg/lib/defaults");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/orders", ordersRoutes(db));
+app.use("/orders", ordersRoutes(db, database));
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/menus", menusRoutes(db));
 app.use("/cart", cartRoutes(db));
