@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const authMiddleware = require("../middleware/auth-middleware");
 const { sendMessage } = require("../helpers/sendMessage");
+const { json } = require('express');
 
 // Required restaurant to be logged in to access order routes
 router.use((req, res, next) => {
@@ -104,6 +105,7 @@ module.exports = (db) => {
     `, [req.params.id])
       .then((results) => {
         const order = results.rows[0];
+
         // const body = `Hey ${order.customer_name}, your order #${order.id} from ${order.restaurant_name} has been confirmed and is being prepared! The estimated pickup time is ${req.body.estimated_pickup}. You'll receive another text message when it's ready for pickup.`;
 
         // res.render('restaurants/orders_detail.ejs', { order, ...req.defaultVars });
