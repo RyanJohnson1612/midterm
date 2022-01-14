@@ -74,3 +74,33 @@
   align-items: center;
   gap: 10px;
 }
+
+.index-view-orders {
+  transition: 0.5s;
+}
+
+.index-view-menu {
+  transition: 0.5s;
+}
+
+.index-view-orders:hover {
+  text-decoration: none;
+  font-size: large;
+  color: $secondary;
+}
+
+.index-view-menu:hover {
+  text-decoration: none;
+  font-size: large;
+  color: $secondary;
+}
+
+.index-login-button {
+  transition: 0.5s;
+}
+
+.index-login-button:hover {
+  color: $secondary;
+  font-size: large;
+
+}
