@@ -39,7 +39,6 @@ module.exports = (db) => {
         return result.rows;
       })
       .then((result) => {
-        const cartCount = req.cartCount;
         res.render("menus/menus-detail.ejs", { foodArr: result[index], ...req.defaultVars });
       })
       .catch((err) => {
