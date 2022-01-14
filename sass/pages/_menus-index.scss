@@ -29,7 +29,10 @@
   right: 0;
   padding-bottom: 5px;
   transition: 0.5s;
-  border-radius: 25px;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-bottom: 15px;
   @include for-xs-down {
     width: 100%;
     height: auto;
@@ -58,5 +61,7 @@
     }
   }
   box-shadow: 5px 10px $secondary;
+
+  text-decoration: none;
 }
 
