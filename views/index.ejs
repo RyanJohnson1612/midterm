@@ -14,14 +14,14 @@
 
       <div class="index-buttons">
 
-        <a href="/orders"> View Orders </a>
+        <a href="/orders" class="index-view-orders"> View Orders </a>
 
-        <a href="/menus"> View Menu </a>
+        <a href="/menus" class="index-view-menu"> View Menu </a>
 
       <% if(restaurantId) { %>
-          <form action="/api/restaurants/logout" method="POST"><button type="submit" class="btn btn-primary">Logout</button>
+          <form action="/api/restaurants/logout" method="POST"><button type="submit" class="btn btn-primary index-login-button">Logout</button>
         <% } else { %>
-          <form action="/api/restaurants/login/1" method="POST"><button type="submit" class="btn btn-primary">Login</button>
+          <form action="/api/restaurants/login/1" method="POST"><button type="submit" class="btn btn-primary index-login-button">Login</button>
         <% } %>
       </div>
 
