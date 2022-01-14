@@ -62,8 +62,9 @@ app.use((req, res, next) => {
 // Note: Feel free to replace the example routes below with your own
 const restaurantsRoutes = require("./routes/restaurants");
 const ordersRoutes = require("./routes/orders");
-const customersRoutes = require("./routes/customers");
+const menusRoutes = require("./routes/menus");
 const cartRoutes = require("./routes/cart");
+
 const checkoutRoutes = require("./routes/checkout");
 const { rows } = require("pg/lib/defaults");
 //const checkoutRoutes = require("./routes/checkout");
@@ -74,93 +75,14 @@ app.use("/orders", ordersRoutes(db));
 app.use("/api/restaurants", restaurantsRoutes(db));
 app.use("/menus", menusRoutes(db));
 app.use("/cart", cartRoutes(db));
+
+//app.use("/api/checkout", checkoutRoutes(db));
+
 // Note: mount other resources here, using the same pattern above
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-app.get("/customers", (req, res) => {
-  db.query(
-    `SELECT *
-     FROM food_items`
-  )
-    .then((result) => {
-      return result.rows;
-    })
-    .then((result) => {
-      console.log(req.defaultVars);
-      res.render("customers/customers-index.ejs", {
-        foodArr: result,
-        ...req.defaultVars,
-      });
-    })
-    .catch((err) => {
-      console.log("User Null", err.message);
-    });
-});
 
-app.get("/customers/:id", (req, res) => {
-  const index = req.params.id - 1;
-  db.query(
-    `SELECT *
-     FROM food_items`
-  )
-    .then((result) => {
-      return result.rows;
-    })
-    .then((result) => {
-      const cartCount = req.cartCount;
-      console.log("foodArr", result[index]);
-      res.render("customers/customers-detail.ejs", {
-        foodArr: result[index],
-        ...req.defaultVars,
-      });
-    })
-    .catch((err) => {
-      console.log("User Null", err.message);
-    });
-});
-
-app.get("/cart", (req, res) => {
-  res.render("cart/cart.ejs");
-});
-
-app.get("/checkout", (req, res) => {
-  res.render("cart/checkout.ejs");
-});
-// customer add quanity to specific food_items
-// req.session is an object with following structure: { food_items_id: 'quantity', food_items_id: 'quantity', food_items_id: 'quantity' }
-app.post("/customers/:id/new", (req, res) => {
-  const quantity = Number(req.body.quantity);
-  const foodID = req.params.id;
-  console.log("quantity", quantity);
-  console.log("foodID", foodID);
-  if (req.session.cart) {
-    let cart = req.session.cart;
-    for (let item of cart) {
-      if (item.food_items_id === foodID) {
-        item.quantity += quantity;
-        console.log("quantity updated", req.session.cart);
-        res.redirect("/customers");
-        return;
-      }
-    }
-
-    req.session.cart.push({
-      food_items_id: foodID,
-      quantity: quantity,
-    });
-    console.log("add item to cart", req.session.cart);
-    res.redirect("/customers");
-  } else {
-    req.session.cart = [];
-    req.session.cart.push({
-      food_items_id: foodID,
-      quantity: quantity,
-    });
-    console.log("initialize cart", req.session.cart);
-    res.redirect("/customers");
-  }
-});
 
 // Home page
 app.get("/", (req, res) => {

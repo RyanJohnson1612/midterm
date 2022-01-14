@@ -1,4 +1,6 @@
-.customers-index-body {
+.menus-index-body {
+  font-family: $comfortaa;
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -6,7 +8,9 @@
   min-height: $full-h-nav-offset;
 }
 
-.customers-index-container {
+.menus-index-container {
+  margin-top: 50px;
+
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -14,7 +18,7 @@
   min-height: 100vh;
 }
 
-.customers-index-picture {
+.menus-index-picture {
   position: relative;
   display: block;
   max-width: 100%;
@@ -25,14 +29,17 @@
   right: 0;
   padding-bottom: 5px;
   transition: 0.5s;
-
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  margin-bottom: 15px;
   @include for-xs-down {
     width: 100%;
     height: auto;
   }
 }
 
-.customers-index-thumbnail {
+.menus-index-thumbnail {
   padding: 20px;
   margin: 20px;
   border-color: black;
@@ -43,8 +50,8 @@
   transition: 0.5s;
 }
 
-.customers-index-thumbnail:hover {
-  .customers-index-picture{
+.menus-index-thumbnail:hover {
+  .menus-index-picture{
     width: 395px;
     height: 285px;
 
@@ -54,5 +61,7 @@
     }
   }
   box-shadow: 5px 10px $secondary;
+
+  text-decoration: none;
 }
 
