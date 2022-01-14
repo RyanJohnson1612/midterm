@@ -31,10 +31,23 @@ Upon a customer choosing the type and the quantity for each food item, the infor
 - twilio ^3.73.0
 
 ## Screenshots
+
+### Homepage
 !["Screenshot of the index page"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/1.%20index.png)
+
+### Menu Page
 !["Screenshot of menu (customer side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/2.%20menus-index.png)
+
+### Menu Item Pages
 !["Screenshot of detail information of a food item (customer side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/3.%20menus-detail.png)
+
 !["Screenshot of detail information of another food item (customer side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/4.%20menus-detail(2).png)
+
+### Cart Page
 !["Screenshot of the cart with a summary of food item and quantity (customer side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/5.%20carts.png)
+
+### Orders Index Page
 !["Screenshot of the table with all orders (restaurant side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/6.%20orders-index.png)
+
+### Order Detail Page
 !["Screenshot of detail information of an individual order (restaurant side of view)"](https://github.com/RyanJohnson1612/midterm/blob/master/screen-shot-ducs/7.%20orders-detail.png)
