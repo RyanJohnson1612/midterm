@@ -77,7 +77,6 @@ app.use("/api/cart", cartRoutes(db));
 
 // Home page
 app.get("/", (req, res) => {
-  console.log(req.session.restaurant_id);
   if (req.session.restaurant_id) {
     db.query(
       `SELECT *
@@ -95,7 +94,6 @@ app.get("/", (req, res) => {
       });
     });
   } else {
-    console.log("logged out");
     res.render("index", { ...req.defaultVars });
   }
 });

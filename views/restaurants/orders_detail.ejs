@@ -5,7 +5,6 @@
 
   <body>
     <%- include('../partials/_nav') %>
-    <main>
       <section id="order-details">
         <div class="col-md-8">
           <h1><%= order.customer_name %>'s Order</h1>
@@ -33,7 +32,6 @@
                 </div>
               </div>
               <h4><%= food.price %></h4>
-              </ul>
             </article>
           <% } %>
           <h3 class="order-total"><span>Total:</span> <%= order.total %></h3>
@@ -41,15 +39,24 @@
       </section>
 
       <section id="order-confirm-form">
-        <form action="/orders/confirm" method="post" class="form col-md-8">
-          <div>
-            <label>Estimated Pickup Time:</label>
-            <input type="text" value="<%= ( order.preferred_pickup ? order.preferred_pickup : '' ) %>" class="form-control">
-            <button type="submit" class="btn btn-primary">Confirm Order</button>
-          </div>
-        </form>
+        <% if (!order.confirmed) { %>
+          <form action="/orders/<%= order.id %>/update" method="POST" class="col-md-8">
+            <div>
+              <label>Estimated Pickup Time:</label>
+              <input type="hidden" value="true" name="confirmed">
+              <input type="time" name="estimated_pickup" class="form-control" required>
+              <button type="submit" class="btn btn-primary">Confirm Order</button>
+            </div>
+          </form>
+        <% } else if (order.confirmed && !order.completed) { %>
+          <form action="/orders/<%= order.id %>/update" method="POST" class="col-md-8">
+            <div>
+              <input type="hidden" value="true" name="completed">
+              <button type="submit" class="btn btn-primary">Order Completed</button>
+            </div>
+          </form>
+        <% } %>
       </section>
-    </main>
   </body>
 </html>
 
