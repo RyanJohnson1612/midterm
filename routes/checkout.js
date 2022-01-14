@@ -1,5 +1,5 @@
-const express = require("express");
-// const { getOrder } = require("../global"); //
+/* const express = require("express");
+const { getOrder } = require("../global");
 
 const router = express.Router();
 
@@ -53,3 +53,4 @@ module.exports = (db) => {
   });
   return router;
 };
+*/

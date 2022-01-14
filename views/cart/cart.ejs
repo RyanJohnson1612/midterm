@@ -9,7 +9,30 @@
     <!-- Cart -->
     <h1>Your Cart</h1>
 
-    <div class="shopping-cart">
+    <section id="order-food">
+      <div class="col-md-8">
+        <h2>Food ordered</h2>
+        <% for (let food of foodArr) { %>
+          <article class="order-food-card">
+            <div>
+              <img src="<%= food.picture_url %>" width="150">
+              <div>
+                <h4><%= food.food_name %></h4>
+                <p>Quantity: <%= food.quantity %></p>
+              </div>
+            </div>
+            <h4><%= food.price %></h4>
+            </ul>
+          </article>
+        <% } %>
+        <h3 class="order-total"><span>Total</span> $<%= sum %></h3>
+
+      </div>
+
+    </section>
+
+
+    <!-- <div class="shopping-cart">
       <div class="column-labels">
         <label class="product-image">Image</label>
         <label class="product-details">Product</label>
